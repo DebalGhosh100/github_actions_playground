@@ -24,7 +24,8 @@ jobs:
           cd ghap/build && \
           ls -al && \
           cmake . && \
-          make
+          make && \
+          ./basic-calculator sum 2 3
 
       - name: Second step
         run: echo "Hello world"
