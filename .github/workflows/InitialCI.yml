@@ -18,6 +18,9 @@ jobs:
       # Buld the cpp app
       - name: Build
         run: cd ghap/build && ls -al && cmake . && make
+      # Run the cpp app
+      - name: Run
+        run: cd ghap/build && ./basic-calculator sum 1 2
 
   second-job:
     name: Second Job
