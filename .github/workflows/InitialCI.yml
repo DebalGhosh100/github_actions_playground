@@ -12,8 +12,9 @@ jobs:
     name: First Job
     runs-on: ubuntu-latest
     steps:
+      - uses: checkout@v4
       - name: First step
-        run: echo "Hello from first step"
+        run: ls -al
       - name: Second step
         run: echo "Hello from second step"
 
