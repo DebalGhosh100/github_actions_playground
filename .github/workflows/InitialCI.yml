@@ -44,4 +44,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: First step
-        run: echo "${{ toJson(steps) }}"
+        run: echo "${{ toJson(github) }}"
