@@ -17,7 +17,7 @@ jobs:
         run: find ./ -type d | sed 's/[^\/]*\//|   /g;s/|   \([^|]\)/+-- \1/'
       # Buld the cpp app
       - name: Build
-        run: cd ghap/build && cmake . && make
+        run: cd ghap/build && ls -al && cmake . && make
 
   second-job:
     name: Second Job
