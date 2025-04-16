@@ -16,6 +16,8 @@ jobs:
     name: Second Job
     needs: first-job
     steps:
+      - name: "Checkout code"
+        run: actions/checkout@v4
       - name: First step
         run: ls -al
       - name: Second step
