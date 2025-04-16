@@ -1,3 +1,0 @@
-/home/debalghosh/ghap/build/CMakeFiles/edit_cache.dir
-/home/debalghosh/ghap/build/CMakeFiles/rebuild_cache.dir
-/home/debalghosh/ghap/build/CMakeFiles/basic-calculator.dir
