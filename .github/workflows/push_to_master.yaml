@@ -18,8 +18,13 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v4
+
       - name: First step
-        run: cd ghap/build && ls -al
+        run: cd ghap/build
+
+      - name: List all
+        run: ls -al
+
       - name: Second step
         run: echo "Hello world"
 
