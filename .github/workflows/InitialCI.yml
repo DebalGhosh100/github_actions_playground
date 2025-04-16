@@ -15,8 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Find all
         run: find ./ -type d | sed 's/[^\/]*\//|   /g;s/|   \([^|]\)/+-- \1/'
-      - name: Second step
-        run: echo "Hello from second step"
+      # Buld the cpp app
+      - name: Build
+        run: cd ghap/build && cmake . && make
 
   second-job:
     name: Second Job
