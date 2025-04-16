@@ -22,7 +22,9 @@ jobs:
       - name: First step
         run: |
           cd ghap/build && \
-          ls -al
+          ls -al && \
+          cmake . && \
+          make
 
       - name: Second step
         run: echo "Hello world"
