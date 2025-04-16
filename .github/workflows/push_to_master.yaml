@@ -19,7 +19,7 @@ jobs:
       - name: "Checkout code"
         uses: actions/checkout@v4
       - name: First step
-        run: ls -al
+        run: cd ghap && ls -al
       - name: Second step
         run: echo "Hello world"
 
