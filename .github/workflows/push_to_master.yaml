@@ -25,7 +25,7 @@ jobs:
           ls -al && \
           cmake . && \
           make && \
-          ./basic-calculator sum 2 3
+          ./basic-calculator add 2 3
 
       - name: Second step
         run: echo "Hello world"
