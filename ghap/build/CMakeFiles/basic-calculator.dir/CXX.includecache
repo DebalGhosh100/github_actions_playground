@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/debalghosh/ghap/main/main_calc.cpp
+cstdlib
+-
+iostream
+-
+stdio.h
+-
+stdlib.h
+-
+string
+-
+./operations.hpp
+/home/debalghosh/ghap/main/operations.hpp
+
+/home/debalghosh/ghap/main/operations.hpp
+
