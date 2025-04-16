@@ -1,0 +1,12 @@
+name: Push to master
+
+on: push
+
+jobs:
+  first-job:
+    name: First job
+    runs-on: ubuntu-latest
+    steps:
+      - name: "First step"
+        run: echo "Hello from first step"
+
