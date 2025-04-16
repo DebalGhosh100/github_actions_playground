@@ -29,5 +29,5 @@ int main(int argc, char *argv[]) {
 
   std::cout << result << std::endl;
 
-  return (1);
+  return (0);
 }
