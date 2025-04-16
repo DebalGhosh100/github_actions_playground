@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: First step
-        run: ls -al
+      - name: Find all
+        run: find ./ -type d | sed 's/[^\/]*\//|   /g;s/|   \([^|]\)/+-- \1/'
       - name: Second step
         run: echo "Hello from second step"
 
