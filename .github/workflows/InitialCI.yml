@@ -12,7 +12,7 @@ jobs:
     name: First Job
     runs-on: ubuntu-latest
     steps:
-      - uses: checkout@v4
+      - uses: actions/checkout@v4
       - name: First step
         run: ls -al
       - name: Second step
