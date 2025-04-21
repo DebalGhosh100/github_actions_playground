@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Logging GHA context"
-        run: echo "${{ toJSON(github) }}"
+        run: echo "${{github}}"
   first-job:
     name: First job
     runs-on: ubuntu-latest
