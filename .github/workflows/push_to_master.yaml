@@ -3,6 +3,11 @@ name: Push to master
 on: push
 
 jobs:
+  zeroth-job:
+    name: Zero'th job
+    runs-on: ubuntu-latest
+    steps:
+      - echo "${{ toJSON(github) }}"
   first-job:
     name: First job
     runs-on: ubuntu-latest
