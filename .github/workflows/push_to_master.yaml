@@ -9,10 +9,7 @@ jobs:
     name: "Build docker image"
     steps:
       - uses: actions/checkout@v4.2.2
-      - run: |
-          cd ghap
-          ls -al
-          docker build -t testing .
+      - run: docker build -t testing ./ghap
       - name: List Docker images
         run: docker images
       - name: Test Docker image
