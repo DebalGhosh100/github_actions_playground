@@ -24,6 +24,7 @@ jobs:
   job-two:
     runs-on: ubuntu-latest
     name: "Job 2"
+    needs: job-one
     steps:
 
       # Checkout code
@@ -40,6 +41,7 @@ jobs:
   job-three:
     runs-on: ubuntu-latest
     name: "Job 3"
+    needs: job-two
     steps:
 
       # Checkout code
