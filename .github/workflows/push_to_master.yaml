@@ -24,6 +24,7 @@ jobs:
   job-two:
     runs-on: ubuntu-latest
     name: "Job 2"
+    needs: job-one
     steps:
 
       # Checkout code
