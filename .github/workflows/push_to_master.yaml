@@ -25,9 +25,8 @@ jobs:
       
 
       - name: Step 3 error handler
-        if: failure()
+        if: failure() && steps.step-3-id.outcome == 'failure'
         run: |
-          echo "${{ toJSON(steps) }}"
           echo "Handle step 3"
 
 
