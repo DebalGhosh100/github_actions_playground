@@ -13,13 +13,18 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /ghap/build
 
-CMD ls -al
+RUN ls -al
 
 # Command to run
-CMD cmake . && make
+RUN cmake . && make
 
 # Configuration, run bash interpreter by default
-CMD ["/bin/bash"]
+RUN ["/bin/bash"]
+
+COPY ./build/* ./
+
+RUN echo "Binary built"
+RUN ls -al
 
 # Remove default entrypoint
-ENTRYPOINT []
+CMD["Calculator", "add", "2", "3"]
