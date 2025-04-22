@@ -12,7 +12,10 @@ jobs:
     steps:
       - uses: actions/setup-node@v3.9.1
       
-      - run: |
+      - run: echo "${{ toJSON(github) }}"
+
+      - name: Log envs
+        run: |
           node -e "
             console.log(process.env)
           "
