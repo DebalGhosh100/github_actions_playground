@@ -8,9 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     name: "Build docker image"
     steps:
+      # Clone the repo
       - uses: actions/checkout@v4.2.2
-      - run: docker build -t testing ./ghap
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: docker build -t testing ./ghap
+
+      # List existing Docker images
       - name: List Docker images
         run: docker images
+
+      # Test Docker image
       - name: Test Docker image
-        run: docker run testing ./basic-calculator add 2 3
+        run: docker run testing ./basic-calculator divide 2 3
