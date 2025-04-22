@@ -51,7 +51,6 @@ jobs:
         run: |
           cd ghap/fail_app && cmake . && make && cd ../..
 
-      - run: ./ghap/fail_app/FailApp
 
       # Step 2
       - name: Step 2
