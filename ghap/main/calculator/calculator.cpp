@@ -11,7 +11,9 @@ int subtract(int first, int second) {
 int multiply(int first, int second) {
   return Operations::multiply(first, second);
 }
-float divide(int first, int second) { return Operations::add(first, second); }
+float divide(int first, int second) {
+  return Operations::divide(first, second);
+}
 
 float Calculator::evaluate(String operation, int first, int second) {
   if (operation == "add")
