@@ -49,9 +49,7 @@ jobs:
 
       - name: Step 1
         run: |
-          ls -al && tree -a -I '.git'
           cd ghap/fail_app && cmake . && make && cd ../..
-          cd ghap/succeed_app && cmake . && make && cd ../..
 
       - run: ./ghap/fail_app/FailApp
 
