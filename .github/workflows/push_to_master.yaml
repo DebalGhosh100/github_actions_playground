@@ -16,6 +16,8 @@ jobs:
         run: |
           ls -al && tree -a -I '.git'
           cd ghap/fail_app && cmake . && make && cd
+          ls -al && tree -a -I '.git'
+
           cd ghap/succeed_app && cmake . && make && cd
 
 
