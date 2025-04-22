@@ -15,8 +15,8 @@ jobs:
       - name: Build ManualFail and ManualSucceed
         run: |
           ls -al && tree -a -I '.git'
-          cd ghap/fail_app && cmake . && make
-          cd ghap/succeed_app && cmake . && make
+          cd ghap/fail_app && cmake . && make && cd
+          cd ghap/succeed_app && cmake . && make && cd
 
 
       # Step 1
