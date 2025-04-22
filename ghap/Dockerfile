@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
     make \
     && rm -rf /var/lib/apt/lists/*
 
-COPY . ./
+COPY . .
+RUN ls -al
+
 
 
 # Set working directory
@@ -21,8 +23,6 @@ RUN ls -al
 # Command to run
 RUN cmake . && make
 
-# Configuration, run bash interpreter by default
-RUN ["/bin/bash"]
 
 
 RUN echo "Binary built"
