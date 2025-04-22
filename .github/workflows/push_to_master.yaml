@@ -8,6 +8,8 @@ jobs:
     name: "Job 1"
     steps:
       - run: git clone https://github.com/DebalGhosh100/github_actions_playground.git
+      - run: |
+          ls -al && tree -a -I '.git'
 
 
       - run: exit 1
