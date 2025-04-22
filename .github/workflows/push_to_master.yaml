@@ -3,17 +3,19 @@ name: Testing Cascading Steps
 on: push
 
 jobs:
-  # JOB 1
-  job-one:
+  # BUILD DOCKER IMAGE JOB
+  build-docker-image:
     runs-on: ubuntu-latest
     name: "Build docker image"
     steps:
       # Clone the repo
       - uses: actions/checkout@v4.2.2
 
-      # Build the Docker image
+      # Build the Docker image with timestamp
       - name: Build Docker image
-        run: docker build -t testing ./ghap
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          docker build -t testing:${TIMESTAMP} ./ghap
 
       # List existing Docker images
       - name: List Docker images
@@ -21,4 +23,5 @@ jobs:
 
       # Test Docker image
       - name: Test Docker image
-        run: docker run testing ./basic-calculator divide 2 0
+        run: |
+          docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
