@@ -16,4 +16,4 @@ jobs:
       - name: List Docker images
         run: docker images
       - name: Test Docker image
-        run: docker run testing ls -al
+        run: docker run testing ./basic-calculator add 2 3
