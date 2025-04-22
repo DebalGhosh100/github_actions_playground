@@ -94,7 +94,7 @@ jobs:
       - name: Step 1
         run: echo "Running Step 1"
 
-      - run: echo "${{ steps }}"
+      - run: echo "${{ toJSON(steps) }}"
 
       # Step 2
       - name: Step 2
