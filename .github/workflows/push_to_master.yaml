@@ -3,30 +3,28 @@ on: push
 
 jobs:
   job-one:
-    strategy:
-      matrix:
-        node-version: ["v3.9.0", "v3.9.1"]
     runs-on: ubuntu-latest
     name: "Job 1"
-    continue-on-error: true 
     steps:
-      - uses: actions/setup-node@v3.9.1
-      
-      - run: echo "${{ toJSON(github) }}"
 
-      - name: Log envs
-        run: |
-          node -e "
-            console.log(process.env)
-          "
+      # Step 1
+      - name: Step 1
+        run: echo "Running step 1"
 
+      # Step 2
+      - name: Step 2
+        run: echo "Running step 2"
 
-
-      - run: node --version
-
+      # Step 3
+      - name: Step 3
+        run: echo "Running step 3"
 
 
+      # Step 4
+      - name: Step 4
+        run: echo "Running step 4"
 
 
-
-
+      # Step 5
+      - name: Step 5
+        run: echo "Running step 5"
