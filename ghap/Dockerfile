@@ -26,5 +26,4 @@ COPY ./build/* ./
 RUN echo "Binary built"
 RUN ls -al
 
-# Remove default entrypoint
-CMD["Calculator", "add", "2", "3"]
+CMD []
