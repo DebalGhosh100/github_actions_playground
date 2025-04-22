@@ -5,6 +5,7 @@ jobs:
   job-one:
     runs-on: ubuntu-latest
     name: "Job 1"
+    continue-on-error: true 
     steps:
 
       # Checkout code
