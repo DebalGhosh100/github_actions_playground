@@ -10,7 +10,6 @@ jobs:
 
       # Checkout code
       - uses: actions/checkout@v4
-      - run: exit 1
 
       # Step 1
       - name: Step 1
@@ -32,7 +31,7 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v4
 
-
+      - run: exit 1
 
       # Step 2
       - name: Step 2
@@ -81,7 +80,7 @@ jobs:
   job-five:
     runs-on: ubuntu-latest
     name: "Job 5"
-    if: failure()
+    if: failure() && needs.job-two.result == 'failure'
     needs: job-two
     steps:
 
