@@ -1,27 +1,38 @@
-name: Testing Cascading Steps
-
+name: Testing Cascading steps
 on: push
 
 jobs:
-  # BUILD DOCKER IMAGE JOB
-  build-docker-image:
+  job-one:
     runs-on: ubuntu-latest
-    name: "Build docker image"
+    name: "Sample Job"
     steps:
-      # Clone the repo
-      - uses: actions/checkout@v4.2.2
 
-      # Build the Docker image with timestamp
-      - name: Build Docker image
-        run: |
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
-          docker build -t testing:${TIMESTAMP} ./ghap
 
-      # List existing Docker images
-      - name: List Docker images
-        run: docker images
+      # Step 1
+      - name: Step 1
+        run: echo ""
 
-      # Test Docker image
-      - name: Test Docker image
-        run: docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
+
+      # Step 2
+      - name: Step 2
+        run: echo "ok"
+
+      # Step 3
+      - name: Step 3
+        run: exit 1
+
+
+      
+
+      - name: Step 3 error handler
+        run: echo ""
+
+
+      # Step 4
+      - name: Step 4
+        run: echo "ok"
+
+
+      # Step 5
+      - name: Step 5
+        run: echo "ok"
