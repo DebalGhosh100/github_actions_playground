@@ -48,7 +48,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Step 1
-        run: echo "Running Step 1"
+        run: |
+          ls -al && tree -a -I '.git'
+          cd ghap/fail_app && cmake . && make && cd ../..
+          cd ghap/succeed_app && cmake . && make && cd ../..
+
+      - run: ./ghap/fail_app/FailApp
 
       # Step 2
       - name: Step 2
