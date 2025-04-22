@@ -22,28 +22,39 @@ jobs:
 
 
       # Step 1
-      - name: Step 1
-        run: echo "Running step 1"
+      - name: Step 1-1
+        run: echo "Running job 1 - step 1"
 
       # Step 2
-      - name: Step 2
-        run: echo "Running step 2"
+      - name: Step 1-2
+        run: echo "Running job 1 - step 2"
 
-      # Step 3
-      - name: Step 3
-        run: echo "Running step 3"
+  job-two:
+    runs-on: ubuntu-latest
+    name: "Job 2"
+    steps:
 
-
-      # Step 4
-      - name: Step 4
-        run: echo "Running step 4"
-
-
-      # Step 5
-      - name: Step 5
-        run: echo "Running step 5"
+      # Checkout code
+      - uses: actions/checkout@v4
 
 
+      #list tree and build ManualFail Process & Manual Succeed Process
+      - name: Build ManualFail and ManualSucceed
+        run: |
+          ls -al && tree -a -I '.git'
+
+          cd ghap/fail_app && cmake . && make && cd ../..
+
+          cd ghap/succeed_app && cmake . && make && cd ../..
+
+
+      # Step 1
+      - name: Step 2-1
+        run: echo "Running job 2 - step 1"
+
+      # Step 2
+      - name: Step 2-2
+        run: echo "Running job 2 - step 2"
 
 
 
