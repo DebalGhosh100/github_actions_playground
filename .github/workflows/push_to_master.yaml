@@ -21,4 +21,4 @@ jobs:
 
       # Test Docker image
       - name: Test Docker image
-        run: docker run testing ./basic-calculator divide 2 3
+        run: docker run testing ./basic-calculator divide 2 0
