@@ -3,11 +3,17 @@ on: push
 
 jobs:
   job-one:
+    strategy:
+      matrix:
+        node-version: ["v3.9.0", "v3.9.1"]
     runs-on: ubuntu-latest
     name: "Job 1"
     continue-on-error: true 
     steps:
       - uses: actions/setup-node@v3.9.1
+      
+      - run: echo "${{ matrix }}"
+
       - run: node --version
 
 
