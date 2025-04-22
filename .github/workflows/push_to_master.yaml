@@ -81,6 +81,7 @@ jobs:
   job-five:
     runs-on: ubuntu-latest
     name: "Job 5"
+    if: failure()
     needs: job-three
     steps:
 
