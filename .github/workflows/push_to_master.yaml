@@ -18,8 +18,17 @@ jobs:
 
       # Step 3
       - name: Step 3
+        id: step-3-id
         run: exit code 1
-        continue-on-error: true
+
+
+      
+
+      - name: Step 3 error handler
+        if: failure()
+        run: |
+          echo "${{ steps }}"
+          echo "Handle step 3"
 
 
       # Step 4
