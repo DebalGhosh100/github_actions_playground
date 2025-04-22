@@ -15,6 +15,7 @@ jobs:
       - name: Build Docker image
         run: |
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
           docker build -t testing:${TIMESTAMP} ./ghap
 
       # List existing Docker images
@@ -23,6 +24,4 @@ jobs:
 
       # Test Docker image
       - name: Test Docker image
-        run: |
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
+        run: docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
