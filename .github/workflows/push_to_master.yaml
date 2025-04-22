@@ -38,7 +38,7 @@ jobs:
         
       - name: Failing deliberately
         id: failing-del
-        run: ghap/fail_app/FailApp
+        run: exit 1
 
 
       # Step 2
@@ -99,7 +99,7 @@ jobs:
         id: "job-5-step-1"
         run: echo "Running Step 1"
 
-      - run: echo "${{ toJSON(steps) }}"
+      - run: echo "${{ toJSON(needs) }}"
 
       # Step 2
       - name: Step 2
