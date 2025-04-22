@@ -10,6 +10,7 @@ jobs:
 
       # Checkout code
       - uses: actions/checkout@v4
+      - run: exit 1
 
       # Step 1
       - name: Step 1
