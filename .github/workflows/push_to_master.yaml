@@ -13,5 +13,7 @@ jobs:
           cd ghap
           ls -al
           docker build -t testing .
+      - name: List Docker images
+        run: docker images
       - name: Test Docker image
         run: docker run testing add 2 3
