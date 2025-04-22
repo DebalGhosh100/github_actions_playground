@@ -10,6 +10,7 @@ jobs:
 
       # Checkout code
       - uses: actions/checkout@v4
+      - run: exit 1
 
       # Step 1
       - name: Step 1
@@ -31,14 +32,6 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v4
 
-      - name: Step 1
-        run: |
-          cd ghap/fail_app && cmake . && make && cd ../..
-
-        
-      - name: Failing deliberately
-        id: failing-del
-        run: exit 1
 
 
       # Step 2
