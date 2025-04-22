@@ -8,4 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     name: "Build docker image"
     steps:
+      - uses: actions/checkout@v4.2.2
       - run: ls -al
