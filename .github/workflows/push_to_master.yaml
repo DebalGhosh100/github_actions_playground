@@ -1,41 +1,27 @@
 name: Testing Cascading Steps
+
 on: push
 
 jobs:
-  job-one:
+  # BUILD DOCKER IMAGE JOB
+  build-docker-image:
     runs-on: ubuntu-latest
-    name: "Job 1"
+    name: "Build docker image"
     steps:
+      # Clone the repo
+      - uses: actions/checkout@v4.2.2
 
-
-      # Step 1
-      - name: Step 1
-        run: exit code 1
-
-
-      # Step 2
-      - name: Step 2
-        run: echo "ok"
-
-      # Step 3
-      - name: Step 3
-        id: step-3-id
-        run: echo ""
-
-
-      
-
-      - name: Step 3 error handler
-        if: failure() 
+      # Build the Docker image with timestamp
+      - name: Build Docker image
         run: |
-          echo "Handle step 3"
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+          docker build -t testing:${TIMESTAMP} ./ghap
 
+      # List existing Docker images
+      - name: List Docker images
+        run: docker images
 
-      # Step 4
-      - name: Step 4
-        run: echo "ok"
-
-
-      # Step 5
-      - name: Step 5
-        run: echo "ok"
+      # Test Docker image
+      - name: Test Docker image
+        run: docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
