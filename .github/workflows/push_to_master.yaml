@@ -9,6 +9,8 @@ jobs:
     steps:
 
 
+      - run: exit 1
+
       # Step 1
       - name: Step 1
         run: echo "Running Step 1"
@@ -25,7 +27,6 @@ jobs:
     needs: job-one
     steps:
 
-      - run: exit 1
 
       - name: Step 1
         run: echo "Running Step 1"
