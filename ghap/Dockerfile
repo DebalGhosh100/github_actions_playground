@@ -17,3 +17,9 @@ CMD ls -al
 
 # Command to run
 CMD cmake . && make
+
+# Configuration, run bash interpreter by default
+CMD ["/bin/bash"]
+
+# Remove default entrypoint
+ENTRYPOINT []
