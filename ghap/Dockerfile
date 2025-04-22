@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     make \
     && rm -rf /var/lib/apt/lists/*
 
+COPY . ./
+
+
 # Set working directory
 WORKDIR /ghap/build
 
@@ -21,7 +24,6 @@ RUN cmake . && make
 # Configuration, run bash interpreter by default
 RUN ["/bin/bash"]
 
-COPY ./build/* ./
 
 RUN echo "Binary built"
 RUN ls -al
