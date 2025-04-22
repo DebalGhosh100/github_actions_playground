@@ -11,21 +11,16 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . ./ghap
-RUN ls -al
-
-
 
 # Set working directory
 WORKDIR /ghap/build
 
-RUN ls -al
-
 # Command to run
 RUN cmake . && make
 
-
-
 RUN echo "Binary built"
-RUN ls -al
 
-CMD ["./basic-calculator", "add", "2", "3"]
+
+CMD ["/bin/bash"]
+
+ENTRYPOINT []
