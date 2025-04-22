@@ -10,5 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
       - run: |
-          cd ghap
-          ls -al
+          cd ghap/build
+          cmake . && make
