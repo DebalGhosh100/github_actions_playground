@@ -8,9 +8,8 @@ jobs:
     name: "Job 1"
     steps:
 
-      # Checkout code
-      - uses: actions/checkout@v4
 
+      - run: exit 1
       # Step 1
       - name: Step 1
         run: echo "Running Step 1"
@@ -26,8 +25,6 @@ jobs:
     name: "Job 2"
     needs: job-one
     steps:
-
-      - run: exit 1
 
       - name: Step 1
         run: echo "Running Step 1"
