@@ -7,75 +7,8 @@ jobs:
     name: "Job 1"
     continue-on-error: true 
     steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-
-      #list tree and build ManualFail Process & Manual Succeed Process
-      - name: Build ManualFail and ManualSucceed
-        run: |
-          ls -al && tree -a -I '.git'
-
-          cd ghap/fail_app && cmake . && make && cd ../..
-
-          cd ghap/succeed_app && cmake . && make && cd ../..
-
-
-      # Step 1
-      - name: Step 1-1
-        run: echo "Running job 1 - step 1"
-
-      # Step 2
-      - name: Step 1-2
-        run: ./ghap/fail_app/FailApp
-
-  job-two:
-    runs-on: ubuntu-latest
-    name: "Job 2"
-    needs: job-one
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-
-      #list tree and build ManualFail Process & Manual Succeed Process
-      - name: Build ManualFail and ManualSucceed
-        run: |
-          ls -al && tree -a -I '.git'
-
-          cd ghap/fail_app && cmake . && make && cd ../..
-
-          cd ghap/succeed_app && cmake . && make && cd ../..
-
-
-      # Step 1
-      - name: Step 2-1
-        run: echo "Running job 2 - step 1"
-
-      # Step 2
-      - name: Step 2-2
-        run: echo "Running job 2 - step 2"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      - uses: actions/setup-node@v3.9.1
+      - run: node --version
 
 
 
