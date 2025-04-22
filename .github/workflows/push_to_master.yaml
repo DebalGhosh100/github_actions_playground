@@ -2,109 +2,30 @@ name: Testing Cascading Steps
 on: push
 
 jobs:
-  # JOB 1
   job-one:
     runs-on: ubuntu-latest
     name: "Job 1"
     steps:
-      - run: git clone https://github.com/DebalGhosh100/github_actions_playground.git
-      - run: |
-          ls -al && tree -a -I '.git'
 
-
-      - run: exit 1
 
       # Step 1
       - name: Step 1
-        run: echo "Running Step 1"
+        run: echo "ok"
 
       # Step 2
       - name: Step 2
-        run: echo "Running Step 2"
+        run: echo "ok"
+
+      # Step 3
+      - name: Step 3
+        run: exit code 1
 
 
-  # JOB 2
-  job-two:
-    runs-on: ubuntu-latest
-    name: "Job 2"
-    needs: job-one
-    steps:
+      # Step 4
+      - name: Step 4
+        run: echo "ok"
 
 
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-  job-two-error-handler:
-    runs-on: ubuntu-latest
-    needs: job-two
-    # Any job chained upto the parent failed
-      # Checkout code
-    if: failure() && needs.job-two.result == 'failure'
-    steps:
-      - run: echo " Job 2 failed "
-      - name: Logging needs
-        run: echo "${{ toJSON(needs) }}"
-
-
-  # JOB 3
-  job-three:
-    runs-on: ubuntu-latest
-    name: "Job 3"
-    needs: job-two
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-  # JOB 4
-  job-four:
-    runs-on: ubuntu-latest
-    needs: job-three
-    name: "Job 4"
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 5
-  job-five:
-    runs-on: ubuntu-latest
-    name: "Job 5"
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-
-
-
-
-
+      # Step 5
+      - name: Step 5
+        run: echo "ok"
