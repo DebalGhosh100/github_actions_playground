@@ -1,3 +1,0 @@
-/home/debalghosh/ghap/github_actions_playground/ghap/succeed_app/CMakeFiles/rebuild_cache.dir
-/home/debalghosh/ghap/github_actions_playground/ghap/succeed_app/CMakeFiles/edit_cache.dir
-/home/debalghosh/ghap/github_actions_playground/ghap/succeed_app/CMakeFiles/SucceedApp.dir
