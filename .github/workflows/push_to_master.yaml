@@ -40,7 +40,7 @@ jobs:
     needs: job-two
     # Any job chained upto the parent failed
       # Checkout code
-    if: failure()
+    if: failure() && needs.result == "failure"
     steps:
       - run: echo " Job 2 failed "
       - name: Logging needs
