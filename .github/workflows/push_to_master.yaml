@@ -1,4 +1,5 @@
 name: Testing Cascading Steps
+
 on: push
 
 jobs:
@@ -7,143 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 1"
     steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-      - run: exit 1
-
-      # Step 1
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-  # JOB 2
-  job-two:
-    runs-on: ubuntu-latest
-    name: "Job 2"
-    needs: job-one
-    
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 3
-  job-three:
-    runs-on: ubuntu-latest
-    name: "Job 3"
-    needs: job-two
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        run: |
-          cd ghap/fail_app && cmake . && make && cd ../..
-
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-  # JOB 4
-  job-four:
-    runs-on: ubuntu-latest
-    name: "Job 4"
-    needs: job-three
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-
-  # JOB 5
-  job-five:
-    runs-on: ubuntu-latest
-    name: "Job 5"
-    if: failure() && needs.job-two.result == 'failure'
-    needs: job-two
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        id: "job-5-step-1"
-        run: echo "Running Step 1"
-
-      - run: echo "${{ toJSON(needs) }}"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB auxiliary
-  job-auxiliary:
-    runs-on: ubuntu-latest
-    name: "Job auxiliary"
-    steps:
-
-      # Checkout code
-      - uses: actions/checkout@v4
-
-      - name: Step 1
-        run: |
-          cd ghap/fail_app && cmake . && make && cd ../..
-
-      - run: ghap/fail_app/FailApp
-
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      # You may pin to the exact commit or the version.
+      # uses: dawidd6/action-send-mail@611879133a9569642c41be66f4a323286e9b8a3b
+      - uses: dawidd6/action-send-mail@v4
+        with:
+          # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password
+          
+          # Subject of mail message
+          subject: Subject
+          # Recipients mail addresses (separated with comma)
+          to: debal.ghosh@intel.com
+          # Full name of mail sender (might be with an email address specified in <>)
+          from: debal.ghosh@intel.com
+          # Body of mail message (might be a filename prefixed with file:// to read from)
+          body: This is a body
+          cc: debal.ghosh@gmail.com
