@@ -94,6 +94,27 @@ jobs:
       - name: Step 2
         run: echo "Running Step 2"
 
+  # JOB auxiliary
+  job-auxiliary:
+    runs-on: ubuntu-latest
+    name: "Job auxiliary"
+    steps:
+
+      # Checkout code
+      - uses: actions/checkout@v4
+
+      - name: Step 1
+        run: |
+          cd ghap/fail_app && cmake . && make && cd ../..
+
+      - run: ghap/fail_app/FailApp
+
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
 
 
 
