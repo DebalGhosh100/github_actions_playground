@@ -28,4 +28,4 @@ RUN cmake . && make
 RUN echo "Binary built"
 RUN ls -al
 
-CMD []
+CMD ["./basic-calculator", "add", "2", "3"]
