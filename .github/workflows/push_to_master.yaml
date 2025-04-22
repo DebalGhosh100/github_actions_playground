@@ -92,6 +92,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Step 1
+        id: "job-1-step-1"
         run: echo "Running Step 1"
 
       - run: echo "${{ toJSON(steps) }}"
