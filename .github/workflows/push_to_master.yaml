@@ -1,33 +1,57 @@
-name: Push to master
-
+name: Testing Cascading Steps
 on: push
 
 jobs:
-
-  first-job:
-    name: First job
-    runs-on: ubuntu-latest
+  job-one:
+    runs-on: Ubuntu
+    name: "Testing cas"
     steps:
-      - name: "First step"
-        run: echo "Hello from first step"
+
+      # Step 1
+      - name: Step 1
+        run: echo "Running step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running step 2"
+
+      # Step 3
+      - name: Step 3
+        run: echo "Running step 3"
 
 
-  second-job:
-    runs-on: ubuntu-latest
-    name: Second Job
-    needs: first-job
-    steps:
-      - name: "Checkout code"
-        uses: actions/checkout@v4
+      # Step 4
+      - name: Step 4
+        run: echo "Running step 4"
 
-      - name: First step
-        run: |
-          cd ghap/build && \
-          ls -al && \
-          cmake . && \
-          make && \
-          ./basic-calculator add 2 3
 
-      - name: Second step
-        run: echo "Hello world"
+      # Step 5
+      - name: Step 5
+        run: echo "Running step 5"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
