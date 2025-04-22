@@ -2,6 +2,7 @@ name: Testing Cascading Steps
 on: push
 
 jobs:
+  # JOB 1
   job-one:
     runs-on: ubuntu-latest
     name: "Job 1"
@@ -10,32 +11,53 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v4
 
-
-      #list tree and build ManualFail Process & Manual Succeed Process
-      - name: Build ManualFail and ManualSucceed
-        run: |
-          ls -al && tree -a -I '.git'
-          cd ghap/fail_app && cmake . && make && cd ../..
-          cd ghap/succeed_app && cmake . && make && cd ../..
       # Step 1
       - name: Step 1
-        run: ./ghap/succeed_app/SucceedApp
+        run: echo "Running Step 1"
 
       # Step 2
       - name: Step 2
-        run: ./ghap/succeed_app/SucceedApp
-
-      # Step 3
-      - name: Step 3
-        continue-on-error: true
-        run: ./ghap/fail_app/FailApp
+        run: echo "Running Step 2"
 
 
-      # Step 4
-      - name: Step 4
-        run: ./ghap/succeed_app/SucceedApp
+  # JOB 2
+  job-two:
+    runs-on: ubuntu-latest
+    name: "Job 2"
+    steps:
+
+      # Checkout code
+      - uses: actions/checkout@v4
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
 
 
-      # Step 5
-      - name: Step 5
-        run: ./ghap/succeed_app/SucceedApp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
