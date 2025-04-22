@@ -10,11 +10,12 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v4
 
-      - name: "List all"
-        run: ls -al
 
-      - name: Dir Tree
-        run: tree -a
+      #list tree and build ManualFail Process & Manual Succeed Process
+      - name: Build ManualFail and ManualSucceed
+        run: |
+          ls -al && tree -a
+          cd ghap/fail_app && cmake . && make
 
 
       # Step 1
