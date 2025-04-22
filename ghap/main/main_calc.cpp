@@ -4,13 +4,13 @@
 #include <stdlib.h>
 #include <string>
 
-#include "./operations.hpp"
+#include "./calculator/calculator.hpp"
 
 int main(int argc, char *argv[]) {
   // Check if exactly 4 arguments are provided (program name + 3 args)
   if (argc != 4) {
-    std::cerr << "Usage: " << argv[0] << " <add|subtract> <num1> <num2>"
-              << std::endl;
+    std::cerr << "Usage: " << argv[0]
+              << " <add|subtract|multiply|divide> <num1> <num2>" << std::endl;
     return 1;
   }
 
@@ -18,14 +18,7 @@ int main(int argc, char *argv[]) {
   int num1 = std::atoi(argv[2]);
   int num2 = std::atoi(argv[3]);
 
-  Operations calc_operator = Operations();
-
-  int result = 0;
-
-  if (operation == "add")
-    result = calc_operator.add(num1, num2);
-  else if (operation == "subtact")
-    result = calc_operator.add(num1, num2);
+  float result = Calculator::evaluate(operation, num1, num2);
 
   std::cout << result << std::endl;
 
