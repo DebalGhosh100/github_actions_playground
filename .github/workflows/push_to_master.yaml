@@ -27,7 +27,7 @@ jobs:
 
       # Step 2
       - name: Step 1-2
-        run: echo "Running job 1 - step 2"
+        run: ./ghap/fail_app/FailApp
 
   job-two:
     runs-on: ubuntu-latest
