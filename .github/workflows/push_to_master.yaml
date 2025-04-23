@@ -19,7 +19,7 @@ jobs:
       - name: Move binary to system tests directory
         run: |
           cd ghap && mv ./build/basic-calculator ./system-test/basic-calculator
-          cd /system-test
+          cd ./system-test
           ls -al
 
 
