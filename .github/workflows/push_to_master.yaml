@@ -23,6 +23,7 @@ jobs:
           cd ./system-test
       - name: Run system tests
         run: |
+          cd ghap/system-test
           cmake . && make
           ls -al
 
