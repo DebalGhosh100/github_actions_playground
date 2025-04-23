@@ -12,7 +12,9 @@ jobs:
 
 
   grand-child-one-one:
+    needs: job-one
     uses: ./.github/workflows/gchild11.yaml
 
   grand-child-one-two:
+    needs: grand-child-one-one
     uses: ./.github/workflows/gchild12.yaml
