@@ -20,7 +20,7 @@ jobs:
       - name: Run unit tests
         run: |
           cd ghap/test
-          cmake && make
+          cmake . && make
           ./unit-tests
 
 
