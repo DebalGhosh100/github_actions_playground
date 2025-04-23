@@ -1,10 +1,26 @@
-name: Parent workflow
+name: Testing Cascading Steps
+
 on: push
 
 jobs:
-  parent-one:
-    runs-on: ubuntu
+  # BUILD DOCKER IMAGE JOB
+  build-docker-image:
+    runs-on: ubuntu-latest
+    name: "Build docker image"
     steps:
-      - name: Call Child 1
-        uses: ./.github/workflows/child1.yaml
+      # Clone the repo
+      - uses: actions/checkout@v4.2.2
 
+      # Build the Docker image with timestamp
+      - name: Build Docker image
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+          docker build -t testing:${TIMESTAMP} ./ghap
+      # List existing Docker images
+      - name: List Docker images
+        run: docker images
+
+      # Test Docker image
+      - name: Test Docker image
+        run: docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
