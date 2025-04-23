@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
-        run: action/checkout@v4
+        uses: action/checkout@v4
+
       - name: List all
         run: ls -al && tree -a
 
