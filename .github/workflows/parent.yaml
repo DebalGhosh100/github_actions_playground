@@ -5,9 +5,5 @@ jobs:
   parent-one:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: ls -al
-
-      - name: Call Child 1
-        uses: ./.github/workflows/child1.yml
+      - uses: ./.github/workflows/child1.yml
 
