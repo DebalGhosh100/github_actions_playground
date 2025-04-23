@@ -16,10 +16,14 @@ jobs:
         run: |
           cd ghap/build 
           cmake . && make
+
       - name: Move binary to system tests directory
         run: |
           cd ghap && mv ./build/basic-calculator ./system-test/basic-calculator
           cd ./system-test
+      - name: Run system tests
+        run: |
+          cmake . && make
           ls -al
 
 
