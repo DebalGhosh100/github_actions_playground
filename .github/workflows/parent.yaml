@@ -8,10 +8,8 @@ on:
 jobs:
 
   clone-and-run-unit-tests:
-    runs-on: ubuntu-latest
     name: Clone and run Unit-Tests
-    steps:
-      - run: echo "Clone and run unit tests"
+    uses: "./.github/workflows/clone_and_unit_test.yaml"
 
 
   unit-tests-failed:
