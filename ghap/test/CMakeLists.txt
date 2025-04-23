@@ -1,9 +1,15 @@
-add_subdirectory(googletest)
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+cmake_minimum_required(VERSION 3.16)
 
-set(SOURCES calc_test.cpp)
+project(unit-tests)
 
-add_executable(calc_test ${SOURCES})
-target_link_libraries(calc_test gtest gtest_main)
-enable_testing()
-add_test(NAME calc_test COMMAND calc_test)
+set(SOURCE_FILES ./calc_test.cpp ../main/calculator/calculator.cpp
+                 ../main/calculator/operations/operations.cpp)
+
+set(HEADER_FILES ../main/calculator/calculator.hpp
+                 ../main/calculator/operations/operations.hpp)
+
+set(HEADER_DIRECTORIES ../main/calculator/operations ../main/calculator/)
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${HEADER_DIRECTORIES})

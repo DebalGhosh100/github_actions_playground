@@ -1,17 +1,53 @@
-#include <gtest/gtest.h>
+#include "../main/calculator/calculator.hpp"
+#include <iostream>
+#define NEWL "\n";
+#define LOG(data) std::cout << data << NEWL;
+#define FAILED std::cout << "TEST CASE FAILED" << NEWL;
 
-TEST(CalcTest, Addition) {
-    EXPECT_EQ(1 + 1, 2);
-}
+int main() {
 
-TEST(CalcTest, Subtraction) {
-    EXPECT_EQ(5 - 3, 2);
-}
+  // Summation
+  float sum = Calculator::evaluate("add", 2, 3);
+  if (sum != 5) {
+    FAILED
+    LOG("Summation failed")
 
-TEST(CalcTest, Multiplication) {
-    EXPECT_EQ(3 * 4, 12);
-}
+    return 1;
+  }
+  LOG("Summation succeeded")
 
-TEST(CalcTest, Division) {
-    EXPECT_EQ(10 / 2, 5);
+  // Subtraction
+  float difference = Calculator::evaluate("subtract", 5, 2);
+  if (difference != 3) {
+    FAILED
+    LOG("Subtraction failed")
+
+    return 1;
+  }
+  LOG("Subtraction succeeded")
+
+  // Multiplication
+  float product = Calculator::evaluate("multiply", 5, 2);
+  if (product != 10) {
+    FAILED
+    LOG("Multiplation failed")
+
+    return 1;
+  }
+  LOG("Multiplication succeeded")
+
+  // Division
+  float result = Calculator::evaluate("divide", 5, 2);
+
+  if (result != 2.5) {
+    FAILED
+    LOG("Division failed")
+
+    return 1;
+  }
+  LOG("Division succeeded")
+
+  LOG("ALL TEST CASES PASSED ")
+
+  return 0;
 }
