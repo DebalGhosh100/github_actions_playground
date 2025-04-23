@@ -1,0 +1,13 @@
+name: Parent workflow
+on: push
+
+jobs:
+  child-one-job:
+    name: Child job 1
+    uses: ./.github/workflows/child1.yaml
+
+  child-two-job:
+    needs: child-one-job
+    name: Child job 2
+    uses: ./.github/workflows/child2.yaml
+

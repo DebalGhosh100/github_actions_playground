@@ -1,0 +1,36 @@
+name: Child 1 Workflow
+on: workflow_call
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo "Step 1"
+      - name: Step 2
+        run: echo "Step 2"
+
+
+  grand-child-one-one:
+    needs: job-one
+    uses: ./.github/workflows/gchild11.yaml
+
+  grand-child-one-one-error-handler:
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - run: "Grand Child-one-one failed"
+
+  grand-child-one-two:
+    needs: grand-child-one-one
+    uses: ./.github/workflows/gchild12.yaml
+
+
+  grand-child-one-two-error-handler:
+    if: failure()
+    needs: grand-child-one-two
+    runs-on: ubuntu-latest
+    steps:
+      - run: "Grand Child-one-two failed"
+
+

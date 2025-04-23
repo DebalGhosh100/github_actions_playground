@@ -1,0 +1,13 @@
+name: Child 2 Workflow
+on: workflow_call
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Step 1
+        run: echo "Step 1"
+
+      - name: Step 2
+        run: echo "Step 2"
