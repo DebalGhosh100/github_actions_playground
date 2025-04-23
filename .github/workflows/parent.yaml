@@ -3,5 +3,5 @@ on: push
 
 jobs:
   parent-one:
-    uses: ./.github/workflows/child1.yml
+    uses: ./.github/workflows/child1.yaml
 
