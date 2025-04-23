@@ -13,6 +13,7 @@ jobs:
       - run: echo "Clone and run unit tests"
 
   build-binary-and-run-system-tests:
+    needs: clone-and-run-unit-tests
     runs-on: ubuntu-latest
     name: Build binary and run System Tests
     steps:
@@ -20,6 +21,7 @@ jobs:
 
 
   build-docker-image-and-push-to-docker-hub:
+    needs: build-binary-and-run-system-tests
     runs-on: ubuntu-latest
     name: Build Docker image and push to Dockerhub
     steps:
