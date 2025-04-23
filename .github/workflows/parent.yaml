@@ -49,6 +49,7 @@ jobs:
 
   cleanup-job:
     runs-on: ubuntu-latest
+    name: Cleanup
     needs: build-docker-image-and-push-to-docker-hub
     steps:
       - run: echo ""
