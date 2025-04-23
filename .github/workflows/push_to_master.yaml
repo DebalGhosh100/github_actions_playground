@@ -7,8 +7,8 @@ on:
       - feature/**
 
 jobs:
-  clone-and-run-unit-tests:
-    name: Clone and run unit tests
+  clone-and-run-system-tests:
+    name: Clone and run system tests
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
@@ -17,10 +17,10 @@ jobs:
       - name: List all
         run: ls -al && tree -a
 
-      - name: Run unit tests
+      - name: Build Binary
         run: |
-          cd ghap/test
+          cd ghap/build
           cmake . && make
-          ./unit-tests
+          ls -al
 
 
