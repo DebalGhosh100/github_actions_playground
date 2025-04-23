@@ -24,3 +24,13 @@ jobs:
   grand-child-one-two:
     needs: grand-child-one-one
     uses: ./.github/workflows/gchild12.yaml
+
+
+  grand-child-one-two-error-handler:
+    if: failure()
+    needs: grand-child-one-two
+    runs-on: ubuntu-latest
+    steps:
+      - run: "Grand Child-one-two failed"
+
+
