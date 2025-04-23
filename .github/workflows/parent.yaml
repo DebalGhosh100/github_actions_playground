@@ -7,6 +7,7 @@ jobs:
     uses: ./.github/workflows/child1.yaml
 
   child-two-job:
+    needs: child-one-job
     name: Child job 2
     uses: ./.github/workflows/child2.yaml
 
