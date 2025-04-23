@@ -1,26 +1,27 @@
-name: Testing Cascading Steps
+name: Push to main
+on:
+  push:
+    branches:
+      - main
 
-on: push
 
 jobs:
-  # BUILD DOCKER IMAGE JOB
-  build-docker-image:
+  clone-and-run-unit-tests:
     runs-on: ubuntu-latest
-    name: "Build docker image"
+    name: Clone and run Unit-Tests
     steps:
-      # Clone the repo
-      - uses: actions/checkout@v4.2.2
+      - run: echo "Clone and run unit tests"
 
-      # Build the Docker image with timestamp
-      - name: Build Docker image
-        run: |
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
-          docker build -t testing:${TIMESTAMP} ./ghap
-      # List existing Docker images
-      - name: List Docker images
-        run: docker images
+  build-binary-and-run-system-tests:
+    runs-on: ubuntu-latest
+    name: Build binary and run System Tests
+    steps:
+      - run: echo "Building and running system tests"
 
-      # Test Docker image
-      - name: Test Docker image
-        run: docker run testing:${TIMESTAMP} ./basic-calculator divide 2 3
+
+  build-docker-image-and-push-to-docker-hub:
+    runs-on: ubuntu-latest
+    name: Build Docker image and push to Dockerhub
+
+
+
