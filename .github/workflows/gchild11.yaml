@@ -1,0 +1,9 @@
+name: Grand Child 11
+on: workflow_call
+
+jobs:
+  grand-child-11:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Step 1"
+      - run: echo "Step 2"

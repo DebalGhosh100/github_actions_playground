@@ -9,3 +9,10 @@ jobs:
         run: echo "Step 1"
       - name: Step 2
         run: echo "Step 2"
+
+
+  grand-child-one-one:
+    uses: ./github/workflows/gchild11.yaml
+
+  grand-child-one-two:
+    uses: ./github/workflows/gchild12.yaml
