@@ -3,7 +3,7 @@ on: push
 
 jobs:
   parent-one:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: Call Child 1
         uses: ./.github/workflows/child1.yaml
