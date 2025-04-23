@@ -25,6 +25,7 @@ jobs:
         run: |
           cd ghap/system-test
           cmake . && make
+          ./system-tests
           ls -al
 
 
