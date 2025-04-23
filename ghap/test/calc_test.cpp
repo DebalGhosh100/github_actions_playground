@@ -9,7 +9,7 @@ int main() {
 
   // Summation
   float sum = Calculator::evaluate("add", 2, 3);
-  if (sum != 6) {
+  if (sum != 5) {
     FAILED
     LOG("Summation failed")
 
