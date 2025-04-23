@@ -1,0 +1,10 @@
+name: Parent workflow
+on: push
+
+jobs:
+  parent-one:
+    runs-on: ubuntu
+    steps:
+      - name: Call Child 1
+        uses: ./.github/workflows/child1.yaml
+
