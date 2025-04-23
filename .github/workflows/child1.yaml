@@ -15,6 +15,12 @@ jobs:
     needs: job-one
     uses: ./.github/workflows/gchild11.yaml
 
+  grand-child-one-one-error-handler:
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - run: "Grand Child-one-one failed"
+
   grand-child-one-two:
     needs: grand-child-one-one
     uses: ./.github/workflows/gchild12.yaml
