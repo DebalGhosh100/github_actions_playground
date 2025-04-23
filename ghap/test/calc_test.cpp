@@ -5,14 +5,15 @@
 #define FAILED std::cout << "TEST CASE FAILED" << NEWL;
 
 int main() {
+  int exit_code = 0;
 
   // Summation
   float sum = Calculator::evaluate("add", 2, 3);
-  if (sum != 5) {
+  if (sum != 6) {
     FAILED
     LOG("Summation failed")
 
-    return 1;
+    exit_code = 1;
   }
   LOG("Summation succeeded")
 
@@ -22,7 +23,7 @@ int main() {
     FAILED
     LOG("Subtraction failed")
 
-    return 1;
+    exit_code = 1;
   }
   LOG("Subtraction succeeded")
 
@@ -32,7 +33,7 @@ int main() {
     FAILED
     LOG("Multiplation failed")
 
-    return 1;
+    exit_code = 1;
   }
   LOG("Multiplication succeeded")
 
@@ -43,11 +44,11 @@ int main() {
     FAILED
     LOG("Division failed")
 
-    return 1;
+    exit_code = 1;
   }
   LOG("Division succeeded")
 
   LOG("ALL TEST CASES PASSED ")
 
-  return 0;
+  return exit_code;
 }
