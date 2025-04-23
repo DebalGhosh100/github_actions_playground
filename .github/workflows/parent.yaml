@@ -3,7 +3,5 @@ on: push
 
 jobs:
   parent-one:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/child1.yml
+    uses: ./.github/workflows/child1.yml
 
