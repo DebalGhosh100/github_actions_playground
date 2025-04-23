@@ -22,6 +22,8 @@ jobs:
   build-docker-image-and-push-to-docker-hub:
     runs-on: ubuntu-latest
     name: Build Docker image and push to Dockerhub
+    steps:
+      - run: echo "Building Docker image and push to Dockerhub"
 
 
 
