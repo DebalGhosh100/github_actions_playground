@@ -48,6 +48,9 @@ int main() {
   }
   LOG("Division succeeded")
 
+  if (exit_code)
+    return exit_code;
+
   LOG("ALL TEST CASES PASSED ")
 
   return exit_code;
