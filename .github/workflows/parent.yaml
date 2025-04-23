@@ -12,12 +12,22 @@ jobs:
     steps:
       - run: echo "Clone and run unit tests"
 
+  unit-tests-failed:
+    needs: clone-and-run-unit-tests
+    if: failure()
+    runs-on: ubuntu-latest
+    name: Unit tests failed
+    steps:
+      - run: echo "Unit tests failed"
+
   build-binary-and-run-system-tests:
     needs: clone-and-run-unit-tests
     runs-on: ubuntu-latest
     name: Build binary and run System Tests
     steps:
       - run: echo "Building and running system tests"
+
+
 
 
   build-docker-image-and-push-to-docker-hub:
