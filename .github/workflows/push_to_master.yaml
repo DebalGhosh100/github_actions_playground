@@ -16,7 +16,7 @@ jobs:
         run: |
           cd ghap/build 
           cmake . && make
-          ls -l
+          ls -al
 
 
 
