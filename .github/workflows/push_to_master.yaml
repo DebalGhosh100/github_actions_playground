@@ -1,24 +1,28 @@
-name: Pipeline job
-
+name: Run System Tests
 on:
   push:
     branches:
       - main
-      - feature/**
 
 jobs:
-  clone-and-run-unit-tests:
-    name: Clone and run unit tests
+  run-system-steps:
     runs-on: ubuntu-latest
+    name: Run system tests
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
 
-      - name: List all
-        run: ls -al && tree -a
-
-      - name: Run unit tests
+      - name: Build binary
         run: |
-          cd ghap/test
+          cd ghap/build 
           cmake . && make
-          ./unit-tests
+      - name: Move binary to system tests directory
+        run: |
+          cd ghap && mv ./build/basic-calculator ./system-test/basic-calculator
+          cd ./system-test
+      - name: Run system tests
+        run: |
+          cd ghap/system-test
+          cmake . && make
+          ./system-tests
+          ls -al
