@@ -25,7 +25,7 @@ jobs:
       - name: Step 3 error handler
         if: failure()
 
-        run: echo "${{ steps }}"
+        run: echo "${{ toJSON(steps) }}"
 
 
       # Step 5
