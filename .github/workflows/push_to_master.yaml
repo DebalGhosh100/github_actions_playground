@@ -1,4 +1,5 @@
-name: Testing Cascading Jobs
+      # Checkout code
+name: Testing Cascading Steps
 on: push
 
 jobs:
@@ -22,7 +23,6 @@ jobs:
   job-two:
     runs-on: ubuntu-latest
     name: "Job 2"
-    needs: job-one
     steps:
 
 
@@ -37,7 +37,6 @@ jobs:
   job-three:
     runs-on: ubuntu-latest
     name: "Job 3"
-    needs: job-two
     steps:
 
 
@@ -53,7 +52,6 @@ jobs:
   job-four:
     runs-on: ubuntu-latest
     name: "Job 4"
-    needs: job-three
     steps:
 
 
@@ -68,9 +66,7 @@ jobs:
   job-five:
     runs-on: ubuntu-latest
     name: "Job 5"
-    needs: job-four
     steps:
-
 
       - name: Step 1
         run: echo "Running Step 1"
