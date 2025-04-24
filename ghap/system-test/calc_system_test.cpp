@@ -44,6 +44,10 @@ int main() {
   trim(result);
   assert(result == "2.5" && "Division test failed");
 
+  result = exec("./basic-calculator divide 5 0");
+  trim(result);
+  assert(result == "inf" && "Division test failed");
+
   std::cout << "All tests passed!" << std::endl;
   return 0;
 }
