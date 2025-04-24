@@ -12,6 +12,7 @@ jobs:
     name: Clone and run Unit-Tests
     steps:
       - run: echo "Clone and run unit tests"
+      - run: exit 1
 
 
   unit-tests-failed:
@@ -29,7 +30,6 @@ jobs:
     name: Build binary and run System Tests
     steps:
       - run: echo "Building and running system tests"
-      - run: exit 1
 
   system-tests-failed:
     needs: build-binary-and-run-system-tests
