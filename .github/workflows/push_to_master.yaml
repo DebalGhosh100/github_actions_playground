@@ -38,11 +38,14 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 3"
     needs: job-two
+    outputs:
+      branch_output: ${{ steps.job-3-step1.branch_output }}
 
     steps:
 
       - name: Step 1
-        run: echo "Running Step 1"
+        id: job-3-step1
+        run: echo "branch_output=branch1" >> GITHUB_OUTPUT
 
       # Step 2
       - name: Step 2
@@ -59,6 +62,8 @@ jobs:
 
       - name: Step 1
         run: echo "Running Step 1"
+
+      - run: echo "${{ toJSON(needs) }}"
 
       # Step 2
       - name: Step 2
