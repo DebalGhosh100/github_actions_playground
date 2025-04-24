@@ -8,10 +8,8 @@ on:
 jobs:
 
   clone-and-run-unit-tests:
-    runs-on: ubuntu-latest
     name: Clone and run Unit-Tests
-    steps:
-      - run: echo "Clone and run unit tests"
+    uses: ./.github/workflows/unit_test.yaml
 
 
   unit-tests-failed:
@@ -25,10 +23,8 @@ jobs:
 
   build-binary-and-run-system-tests:
     needs: clone-and-run-unit-tests
-    runs-on: ubuntu-latest
-    name: Build binary and run System Tests
-    steps:
-      - run: echo "Building and running system tests"
+    name: Build-Binary
+    uses: ./.github/workflows/build_binary_and_system_test.yaml
 
   system-tests-failed:
     needs: build-binary-and-run-system-tests
@@ -41,10 +37,8 @@ jobs:
 
   build-docker-image-and-push-to-docker-hub:
     needs: build-binary-and-run-system-tests
-    runs-on: ubuntu-latest
     name: Build Docker image and push to Dockerhub
-    steps:
-      - run: echo "Building Docker image and push to Dockerhub"
+    uses: ./.github/workflows/docker-image.yml
 
 
   cleanup-job:
