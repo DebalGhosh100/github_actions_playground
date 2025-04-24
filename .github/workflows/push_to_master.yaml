@@ -25,6 +25,7 @@ jobs:
       - name: Step 3 error handler
         if: failure()
         run: echo "ok"
+        run: echo "${{ step }}"
 
 
       # Step 5
