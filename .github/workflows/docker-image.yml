@@ -1,5 +1,5 @@
 name: Push to main
-on: workflow_call
+on: push
 
 
 jobs:
