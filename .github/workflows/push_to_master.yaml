@@ -12,7 +12,6 @@ jobs:
     name: Clone and run Unit-Tests
     steps:
       - run: echo "Clone and run unit tests"
-      - run: exit 1
 
 
   unit-tests-failed:
@@ -46,6 +45,7 @@ jobs:
     name: Build Docker image and push to Dockerhub
     steps:
       - run: echo "Building Docker image and push to Dockerhub"
+      - run: exit 1
 
 
   cleanup-job:
