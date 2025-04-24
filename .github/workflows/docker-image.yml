@@ -1,57 +1,76 @@
-name: Workflow Dispatch Demo
-
-on:
-  workflow_dispatch:
-    inputs:
-      simple_string:
-        description: 'A basic string input'
-        required: true
-        default: 'hello'
-      
-      environment_choice:
-        description: 'Choose environment'
-        required: true
-        type: choice
-        options:
-          - development
-          - staging
-          - production
-        default: development
-      
-      run_tests:
-        description: 'Run tests?'
-        required: false
-        type: boolean
-        default: true
-      
-      deployment_region:
-        description: 'AWS region (multi-word string input)'
-        required: false
-        default: 'us-west-2'
-      
-      numeric_input:
-        description: 'A numeric-like string input (treated as string)'
-        required: false
-        default: '42'
-
-      multi_line_input:
-        description: 'A multi-line input string'
-        required: false
-        default: |
-          line1
-          line2
-          line3
+      # Checkout code
+name: Testing Cascading Steps
+on: push
 
 jobs:
-  show-inputs:
+  # JOB 1
+  job-one:
     runs-on: ubuntu-latest
+    name: "Job 1"
     steps:
-      - name: Print all input values
-        run: |
-          echo "Simple string: ${{ github.event.inputs.simple_string }}"
-          echo "Environment: ${{ github.event.inputs.environment_choice }}"
-          echo "Run tests: ${{ github.event.inputs.run_tests }}"
-          echo "Deployment region: ${{ github.event.inputs.deployment_region }}"
-          echo "Numeric input: ${{ github.event.inputs.numeric_input }}"
-          echo -e "Multi-line input:\n${{ github.event.inputs.multi_line_input }}"
 
+
+      # Step 1
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+  # JOB 2
+  job-two:
+    runs-on: ubuntu-latest
+    name: "Job 2"
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 3
+  job-three:
+    runs-on: ubuntu-latest
+    name: "Job 3"
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+  # JOB 4
+  job-four:
+    runs-on: ubuntu-latest
+    name: "Job 4"
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 5
+  job-five:
+    runs-on: ubuntu-latest
+    name: "Job 5"
+    steps:
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
