@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/unit-tests.dir/calc_test.cpp.o CMakeFiles/unit-tests.dir/home/debalghosh/ghap/github_actions_playground/ghap/main/calculator/calculator.cpp.o CMakeFiles/unit-tests.dir/home/debalghosh/ghap/github_actions_playground/ghap/main/calculator/operations/operations.cpp.o  -o unit-tests 
