@@ -1,125 +1,41 @@
 name: Testing Cascading Steps
 
-on:
-  push:
-  workflow_dispatch:
-    inputs:
-      branch_choice:
-        description: 'Choose the branch output'
-        required: true
-        default: 'branch1'
-        type: choice
-        options:
-          - branch1
-          - branch2
-          - branch3
+on: push
 
 jobs:
-  # JOB 1
-  job-one:
+  # BUILD DOCKER IMAGE JOB
+  build-docker-image:
     runs-on: ubuntu-latest
-    name: "Job 1"
+    name: "Build and Push Docker Image"
     steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
+      # Clone the repo
+      - uses: actions/checkout@v4.2.2
 
-  # JOB 2
-  job-two:
-    runs-on: ubuntu-latest
-    name: "Job 2"
-    needs: job-one
-    steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
+      # Set image name and timestamp
+      - name: Set environment variables
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/testing:$TIMESTAMP
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+          echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
 
-  # JOB 3
-  job-three:
-    runs-on: ubuntu-latest
-    name: "Job 3"
-    needs: job-two
-    outputs:
-      branch_output: ${{ steps.job-3-step1.outputs.branch_output }}
+      # Build the Docker image
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME ./ghap
 
-    steps:
-      - name: Step 1
-        id: job-3-step1
-        run: echo "branch_output=${{ github.event.inputs.branch_choice }}" >> $GITHUB_OUTPUT
+      # List Docker images
+      - name: List Docker images
+        run: docker images
 
-      - name: Step 2
-        run: echo "Running Step 2"
+      # Test Docker image
+      - name: Test Docker image
+        run: docker run $IMAGE_NAME ./basic-calculator divide 2 3
 
-  # JOB 4
-  job-four:
-    runs-on: ubuntu-latest
-    name: "Job 4"
-    needs: job-three
-    if: needs.job-three.outputs.branch_output == 'branch1'
-    steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - run: echo "${{ toJSON(needs) }}"
-      - name: Step 2
-        run: echo "Running Step 2"
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-  # JOB 5
-  job-five:
-    runs-on: ubuntu-latest
-    name: "Job 5"
-    needs: job-four
-    steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 6
-  job-six:
-    runs-on: ubuntu-latest
-    name: "Job 6"
-    needs: job-five
-    steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 7
-  job-seven:
-    runs-on: ubuntu-latest
-    name: "Job 7"
-    needs: job-three
-    if: needs.job-three.outputs.branch_output == 'branch2'
-    steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 8
-  job-eight:
-    runs-on: ubuntu-latest
-    name: "Job 8"
-    needs: job-seven
-    steps:
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 9
-  job-nine:
-    runs-on: ubuntu-latest
-    name: "Job 9"
-    needs: job-three
-    if: needs.job-three.outputs.branch_output == 'branch3'
-    steps:
-      - run: echo "${{ toJSON(needs) }}"
-      - name: Step 1
-        run: echo "Running Step 1"
-      - name: Step 2
-        run: echo "Running Step 2"
+      # Push Docker image to Docker Hub
+      - name: Push Docker image
+        run: docker push $IMAGE_NAME
 
