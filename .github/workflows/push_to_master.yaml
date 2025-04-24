@@ -23,6 +23,7 @@ jobs:
 
       # Step 4
       - name: Step 4
+        if: failure()
         run: echo "ok"
 
 
