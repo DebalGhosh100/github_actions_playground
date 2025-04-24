@@ -38,9 +38,11 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 3"
     needs: job-two
+
     steps:
 
 
+      - run: exit 1
       - name: Step 1
         run: echo "Running Step 1"
 
