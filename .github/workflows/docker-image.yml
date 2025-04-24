@@ -1,15 +1,57 @@
-# .github/workflows/hello-world.yml
-
-name: Hello World
+name: Workflow Dispatch Demo
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      simple_string:
+        description: 'A basic string input'
+        required: true
+        default: 'hello'
+      
+      environment_choice:
+        description: 'Choose environment'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+        default: development
+      
+      run_tests:
+        description: 'Run tests?'
+        required: false
+        type: boolean
+        default: true
+      
+      deployment_region:
+        description: 'AWS region (multi-word string input)'
+        required: false
+        default: 'us-west-2'
+      
+      numeric_input:
+        description: 'A numeric-like string input (treated as string)'
+        required: false
+        default: '42'
+
+      multi_line_input:
+        description: 'A multi-line input string'
+        required: false
+        default: |
+          line1
+          line2
+          line3
 
 jobs:
-  say-hello:
+  show-inputs:
     runs-on: ubuntu-latest
     steps:
-      - name: Greet the world
-        run: echo "Hello, world!"
+      - name: Print all input values
+        run: |
+          echo "Simple string: ${{ github.event.inputs.simple_string }}"
+          echo "Environment: ${{ github.event.inputs.environment_choice }}"
+          echo "Run tests: ${{ github.event.inputs.run_tests }}"
+          echo "Deployment region: ${{ github.event.inputs.deployment_region }}"
+          echo "Numeric input: ${{ github.event.inputs.numeric_input }}"
+          echo -e "Multi-line input:\n${{ github.event.inputs.multi_line_input }}"
+
