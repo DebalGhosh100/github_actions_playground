@@ -18,7 +18,6 @@ jobs:
 
       # Step 3
       - name: Step 3
-        continue-on-error: true
         run: exit code 1
 
       # Step 3 fail
