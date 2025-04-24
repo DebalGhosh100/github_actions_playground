@@ -136,7 +136,7 @@ jobs:
     if: failure()
     steps:
 
-
+      - run: echo "${{ toJSON(needs) }}"
       - name: Step 1
         run: echo "Running Step 1"
 
