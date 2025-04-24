@@ -8,8 +8,6 @@ jobs:
     name: "Job 1"
     steps:
 
-      # Checkout code
-      - uses: actions/checkout@v4
 
       # Step 1
       - name: Step 1
@@ -26,8 +24,6 @@ jobs:
     name: "Job 2"
     steps:
 
-      # Checkout code
-      - uses: actions/checkout@v4
 
       - name: Step 1
         run: echo "Running Step 1"
@@ -42,8 +38,6 @@ jobs:
     name: "Job 3"
     steps:
 
-      # Checkout code
-      - uses: actions/checkout@v4
 
       - name: Step 1
         run: echo "Running Step 1"
@@ -59,8 +53,6 @@ jobs:
     name: "Job 4"
     steps:
 
-      # Checkout code
-      - uses: actions/checkout@v4
 
       - name: Step 1
         run: echo "Running Step 1"
@@ -75,8 +67,6 @@ jobs:
     name: "Job 5"
     steps:
 
-      # Checkout code
-      - uses: actions/checkout@v4
 
       - name: Step 1
         run: echo "Running Step 1"
