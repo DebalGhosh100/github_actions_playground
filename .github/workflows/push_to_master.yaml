@@ -39,7 +39,7 @@ jobs:
     name: "Job 3"
     needs: job-two
     outputs:
-      branch_output: ${{ steps.job-3-step1.branch_output }}
+      branch_output: ${{ steps.job-3-step1.outputs.branch_output }}
 
     steps:
 
