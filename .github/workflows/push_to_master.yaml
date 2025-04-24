@@ -133,7 +133,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 9"
     needs: job-three
-    if: failure()
+    if: failure() && needs.job-three.result == 'failure'
     steps:
 
       - run: echo "${{ toJSON(needs) }}"
