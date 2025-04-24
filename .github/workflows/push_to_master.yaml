@@ -45,7 +45,7 @@ jobs:
 
       - name: Step 1
         id: job-3-step1
-        run: echo "branch_output=branch1" >> $GITHUB_OUTPUT
+        run: echo "branch_output=branch2" >> $GITHUB_OUTPUT
 
       # Step 2
       - name: Step 2
