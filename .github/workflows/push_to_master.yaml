@@ -17,12 +17,11 @@ jobs:
 
   unit-tests-failed:
     needs: clone-and-run-unit-tests
-    if: failure()
+    if: failure() && needs.clone-and-run-unit-tests.result == 'failure'
     runs-on: ubuntu-latest
     name: Unit tests failed
     steps:
       - run: echo "Unit tests failed"
-      - run: echo "${{ toJSON(needs) }}"
 
 
   build-binary-and-run-system-tests:
@@ -39,6 +38,7 @@ jobs:
     name: System tests failed
     steps:
       - run: echo "System tests failed"
+      - run: echo "${{ toJSON(needs) }}"
 
 
   build-docker-image-and-push-to-docker-hub:
