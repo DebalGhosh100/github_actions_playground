@@ -22,7 +22,7 @@ jobs:
     name: Unit tests failed
     steps:
       - run: echo "Unit tests failed"
-      - run: echo "${{ needs }}"
+      - run: echo "${{ toJSON(needs) }}"
 
 
   build-binary-and-run-system-tests:
