@@ -29,6 +29,7 @@ jobs:
     name: Build binary and run System Tests
     steps:
       - run: echo "Building and running system tests"
+      - run: exit 1
 
   system-tests-failed:
     needs: build-binary-and-run-system-tests
@@ -45,7 +46,6 @@ jobs:
     name: Build Docker image and push to Dockerhub
     steps:
       - run: echo "Building Docker image and push to Dockerhub"
-      - run: exit 1
 
 
   cleanup-job:
