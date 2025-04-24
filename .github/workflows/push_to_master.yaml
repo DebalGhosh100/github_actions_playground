@@ -33,12 +33,11 @@ jobs:
 
   system-tests-failed:
     needs: build-binary-and-run-system-tests
-    if: failure()
+    if: failure() && needs.build-binary-and-run-system-tests.result == 'failure'
     runs-on: ubuntu-latest
     name: System tests failed
     steps:
       - run: echo "System tests failed"
-      - run: echo "${{ toJSON(needs) }}"
 
 
   build-docker-image-and-push-to-docker-hub:
