@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 4"
     needs: job-three
+    if: needs.job-three.outputs.branch_output == 'branch1'
     steps:
 
 
@@ -104,6 +105,8 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 7"
     needs: job-three
+    if: needs.job-three.outputs.branch_output == 'branch2'
+ 
     steps:
 
 
@@ -136,7 +139,8 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 9"
     needs: job-three
-    if: failure() && needs.job-three.result == 'failure'
+    if: needs.job-three.outputs.branch_output == 'branch3'
+
     steps:
 
       - run: echo "${{ toJSON(needs) }}"
