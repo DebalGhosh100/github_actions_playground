@@ -21,6 +21,12 @@ jobs:
         continue-on-error: true
         run: exit code 1
 
+      # Step 3 fail
+      - name: Step 3 Error Han
+        if: failure()
+        run: echo "Step 3 failed"
+
+
 
       # Step 4
       - name: Step 4
