@@ -1,62 +1,31 @@
-name: Push to main
-on:
-  push:
-    branches:
-      - main
-
+name: Testing Cascading Steps
+on: push
 
 jobs:
-
-  clone-and-run-unit-tests:
+  job-one:
     runs-on: ubuntu-latest
-    name: Clone and run Unit-Tests
+    name: "Job 1"
     steps:
-      - run: echo "Clone and run unit tests"
-      - run: exit 1
 
 
-  unit-tests-failed:
-    needs: clone-and-run-unit-tests
-    if: failure() && needs.clone-and-run-unit-tests.result == 'failure'
-    runs-on: ubuntu-latest
-    name: Unit tests failed
-    steps:
-      - run: echo "Unit tests failed"
+      # Step 1
+      - name: Step 1
+        run: echo "ok"
+
+      # Step 2
+      - name: Step 2
+        run: echo "ok"
+
+      # Step 3
+      - name: Step 3
+        run: exit code 1
 
 
-  build-binary-and-run-system-tests:
-    needs: clone-and-run-unit-tests
-    runs-on: ubuntu-latest
-    name: Build binary and run System Tests
-    steps:
-      - run: echo "Building and running system tests"
-
-  system-tests-failed:
-    needs: build-binary-and-run-system-tests
-    if: failure() && needs.build-binary-and-run-system-tests.result == 'failure'
-    runs-on: ubuntu-latest
-    name: System tests failed
-    steps:
-      - run: echo "System tests failed"
+      # Step 4
+      - name: Step 4
+        run: echo "ok"
 
 
-  build-docker-image-and-push-to-docker-hub:
-    needs: build-binary-and-run-system-tests
-    runs-on: ubuntu-latest
-    name: Build Docker image and push to Dockerhub
-    steps:
-      - run: echo "Building Docker image and push to Dockerhub"
-
-
-  cleanup-job:
-    runs-on: ubuntu-latest
-    name: Cleanup
-    needs: build-docker-image-and-push-to-docker-hub
-    steps:
-      - run: echo ""
-    
-    
-
-
-
-
+      # Step 5
+      - name: Step 5
+        run: echo "ok"
