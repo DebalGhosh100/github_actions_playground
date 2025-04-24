@@ -66,6 +66,7 @@ jobs:
   job-five:
     runs-on: ubuntu-latest
     name: "Job 5"
+    needs: job-four
     steps:
 
       - name: Step 1
