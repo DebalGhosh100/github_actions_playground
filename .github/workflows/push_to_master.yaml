@@ -80,7 +80,7 @@ jobs:
         run: echo "Running Step 2"
 
   # JOB 6
-  job-five:
+  job-six:
     runs-on: ubuntu-latest
     name: "Job 6"
     needs: job-five
