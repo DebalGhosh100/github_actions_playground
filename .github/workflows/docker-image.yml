@@ -1,5 +1,18 @@
 name: Testing Cascading Steps
-on: push
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      branch_choice:
+        description: 'Choose the branch output'
+        required: true
+        default: 'branch1'
+        type: choice
+        options:
+          - branch1
+          - branch2
+          - branch3
 
 jobs:
   # JOB 1
@@ -7,16 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 1"
     steps:
-
-
-      # Step 1
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
-
 
   # JOB 2
   job-two:
@@ -24,12 +31,8 @@ jobs:
     name: "Job 2"
     needs: job-one
     steps:
-
-
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
 
@@ -38,29 +41,27 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 3"
     needs: job-two
+    outputs:
+      branch_output: ${{ steps.job-3-step1.outputs.branch_output }}
+
     steps:
-
-
       - name: Step 1
-        run: echo "Running Step 1"
+        id: job-3-step1
+        run: echo "branch_output=${{ github.event.inputs.branch_choice }}" >> $GITHUB_OUTPUT
 
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
-
 
   # JOB 4
   job-four:
     runs-on: ubuntu-latest
     name: "Job 4"
     needs: job-three
+    if: needs.job-three.outputs.branch_output == 'branch1'
     steps:
-
-
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
+      - run: echo "${{ toJSON(needs) }}"
       - name: Step 2
         run: echo "Running Step 2"
 
@@ -70,12 +71,8 @@ jobs:
     name: "Job 5"
     needs: job-four
     steps:
-
-
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
 
@@ -85,12 +82,8 @@ jobs:
     name: "Job 6"
     needs: job-five
     steps:
-
-
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
 
@@ -99,16 +92,12 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 7"
     needs: job-three
+    if: needs.job-three.outputs.branch_output == 'branch2'
     steps:
-
-
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
-
 
   # JOB 8
   job-eight:
@@ -116,29 +105,20 @@ jobs:
     name: "Job 8"
     needs: job-seven
     steps:
-
-
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
-
 
   # JOB 9
   job-nine:
     runs-on: ubuntu-latest
     name: "Job 9"
     needs: job-three
+    if: needs.job-three.outputs.branch_output == 'branch3'
     steps:
-
-
+      - run: echo "${{ toJSON(needs) }}"
       - name: Step 1
         run: echo "Running Step 1"
-
-      # Step 2
       - name: Step 2
         run: echo "Running Step 2"
-
-
