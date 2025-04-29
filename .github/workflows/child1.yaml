@@ -14,9 +14,12 @@ jobs:
     needs: job-0
     strategy:
       matrix:
-        key1: [value1, value2]
+        python-version: [3.12, 3.16]
     steps:
-      - run: echo "${{ matrix.key1 }}"
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '${{ matrix.python-version }}' 
+
 
 
   job-2:
