@@ -5,8 +5,11 @@ jobs:
   job-1:
     runs-on: ubuntu-latest
     name: Job one
+    strategy:
+      matrix:
+        key1: [value1, value2]
     steps:
-      - run: echo "Job 1"
+      - run: echo "${{ matrix.key1 }}"
 
 
   job-2:
