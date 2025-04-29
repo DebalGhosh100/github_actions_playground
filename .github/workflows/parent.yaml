@@ -23,12 +23,11 @@ jobs:
       matrix:
         #These key value pairs can be anything we want#
         dummy-key: [dummy-value1, dummy-value2]
-        sample-key: [sample-value1, sample-value2]
         #/These key value pairs can be anything we want#
 
 
     steps:
-      - run: echo "${{ toJSON(matrix) }}"
+      - run: echo "${{ matrix }}"
 
 
   third-job:
