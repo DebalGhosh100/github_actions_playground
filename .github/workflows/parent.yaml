@@ -22,12 +22,14 @@ jobs:
     strategy:
       matrix:
         #These key value pairs can be anything we want#
-        dummy-key: [dummy-values1, dummy-values2]
+        dummy-key: [dummy-value1, dummy-value2]
+        sample-key: [sample-value1, sample-value2]
         #/These key value pairs can be anything we want#
 
 
     steps:
-      - run: echo matrix.strategy.dummy-key
+      - run: echo "${{ matrix.strategy.dummy-key }}"
+      - run: echo "${{ matrix.strategy.sample-key }}"
 
 
   third-job:
@@ -36,4 +38,5 @@ jobs:
     needs: second-job
     steps:
       - run: echo "Third job"
+
 
