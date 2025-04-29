@@ -18,8 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Second Job
     needs: first-job
+
+    strategy:
+      matrix:
+        #These key value pairs can be anything we want#
+        dummy-key: [dummy-values1, dummy-values2]
+        #/These key value pairs can be anything we want#
+
+
     steps:
-      - run: echo "Second job"
+      - run: echo "${{ matrix.strategy.dummy-key }}"
 
 
   third-job:
