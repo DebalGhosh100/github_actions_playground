@@ -1,10 +1,31 @@
-name: Parent Workflow
+name: Matrix Strategy testing
+
 on:
   push:
     branches:
       - main
 
+
 jobs:
   first-job:
+    runs-on: ubuntu-latest
     name: First Job
-    uses: ./.github/workflows/child1.yaml
+    steps:
+      - run: echo "First job"
+
+
+  second-job:
+    runs-on: ubuntu-latest
+    name: Second Job
+    needs: first-job
+    steps:
+      - run: echo "Second job"
+
+
+  third-job:
+    runs-on: ubuntu-latest
+    name: Third Job
+    needs: second-job
+    steps:
+      - run: echo "Third job"
+
