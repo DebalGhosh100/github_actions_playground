@@ -28,8 +28,7 @@ jobs:
 
 
     steps:
-      - run: echo "${{ matrix.strategy.dummy-key }}"
-      - run: echo "${{ matrix.strategy.sample-key }}"
+      - run: echo "${{ strategy }}"
 
 
   third-job:
