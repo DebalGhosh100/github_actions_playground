@@ -9,12 +9,15 @@ jobs:
       - run: echo "Hello"
 
   job-1:
-    runs-on: ubuntu-latest
     name: Job one
     needs: job-0
+
     strategy:
       matrix:
+        operating-system: [ubuntu-latest, windows]
         python-version: [3.13, 3.11]
+
+    runs-on: ${{ matrix.operating-system }}
     steps:
       - uses: actions/setup-python@v5
         with:
