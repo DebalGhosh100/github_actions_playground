@@ -2,9 +2,16 @@ name: Child 1
 on: workflow_call
 
 jobs:
+  job-0:
+    runs-on: ubuntu-latest
+    name: Job zero
+    steps:
+      - run: echo "Hello"
+
   job-1:
     runs-on: ubuntu-latest
     name: Job one
+    needs: job-0
     strategy:
       matrix:
         key1: [value1, value2]
