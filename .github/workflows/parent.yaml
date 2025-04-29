@@ -1,51 +1,13 @@
-name: Push to main
+name: Main Job
 on:
   push:
     branches:
       - main
 
-
 jobs:
-
-  clone-and-run-unit-tests:
-    name: Clone and run Unit-Tests
-    uses: ./.github/workflows/unit_test.yaml
-
-
-  unit-tests-failed:
-    needs: clone-and-run-unit-tests
-    if: failure() && needs.clone-and-run-unit-tests.result == 'failure'
+  first-job:
     runs-on: ubuntu-latest
-    name: Unit tests failed
+    name: First Job
     steps:
-      - run: echo "Unit tests failed"
-
-
-  build-binary-and-run-system-tests:
-    needs: clone-and-run-unit-tests
-    name: Build binary and run System Tests
-    uses: ./.github/workflows/build_binary_and_system_test.yaml
-
-  system-tests-failed:
-    needs: build-binary-and-run-system-tests
-    if: failure() && needs.build-binary-and-run-system-tests.result == 'failure'
-    runs-on: ubuntu-latest
-    name: System tests failed
-    steps:
-      - run: echo "System tests failed"
-
-
-  build-docker-image-and-push-to-docker-hub:
-    needs: build-binary-and-run-system-tests
-    runs-on: ubuntu-latest
-    name: Build Docker image and push to Dockerhub
-    steps:
-      - run: echo "Building Docker image and push to Dockerhub"
-
-
-  cleanup-job:
-    runs-on: ubuntu-latest
-    name: Cleanup
-    needs: build-docker-image-and-push-to-docker-hub
-    steps:
-      - run: echo ""
+      - name: First step
+        run: echo "Hello"
