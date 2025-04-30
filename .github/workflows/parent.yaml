@@ -38,7 +38,6 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 3"
     needs: job-two
-    continue-on-error: true
     steps:
 
 
@@ -49,6 +48,24 @@ jobs:
       # Step 2
       - name: Step 2
         run: echo "Running Step 2"
+
+  # JOB 3
+  job-three-exp-han:
+    runs-on: ubuntu-latest
+    name: "Job 3 exception"
+    needs: job-two
+    if: failure()
+    steps:
+
+      - name: Step 1
+        run: echo "${{ toJSON(needs) }}"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+
 
 
   # JOB 4
