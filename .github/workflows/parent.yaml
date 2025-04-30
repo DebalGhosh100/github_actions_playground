@@ -37,7 +37,7 @@ jobs:
   job-three:
     runs-on: ubuntu-latest
     name: "Job 3"
-    needs: job-three
+    needs: job-two
     steps:
 
 
