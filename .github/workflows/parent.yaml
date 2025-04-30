@@ -33,19 +33,33 @@ jobs:
       - name: Step 2
         run: echo "Running Step 2"
 
-  # JOB 3
+  # job 3
   job-three:
     runs-on: ubuntu-latest
-    name: "Job 3"
+    name: "job 3"
     needs: job-two
     steps:
 
 
-      - name: Step 1
-        run: echo "Running Step 1"
+      - name: step 1
+        run: echo "running step 1"
 
-      # Step 2
+      # step 2
       - run: exit 1
+
+  job-three-exp:
+    runs-on: ubuntu-latest
+    name: "job 3 Exception Hanlding"
+    needs: job-three
+    steps:
+
+
+      - name: step 3 failed
+        run: echo "${{ needs }}"
+
+
+
+
 
 
   # JOB 4
