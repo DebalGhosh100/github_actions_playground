@@ -1,0 +1,51 @@
+# .github/workflows/skeleton.yaml
+name: Push to main
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  clone-and-run-unit-tests:
+    name: Clone and run Unit Tests
+    uses: ./.github/workflows/clone-and-run-unit-tests.yaml
+
+  unit-tests-failed:
+    needs: clone-and-run-unit-tests
+    if: failure() && needs.clone-and-run-unit-tests.result == 'failure'
+    runs-on: ubuntu-latest
+    name: Unit tests failed
+    steps:
+      - run: echo "Unit tests failed"
+
+  build-binary-and-run-system-tests:
+    needs: clone-and-run-unit-tests
+    name: Build binary and run System Tests
+    uses: ./.github/workflows/clone-and-run-system-tests.yaml
+
+  system-tests-failed:
+    needs: build-binary-and-run-system-tests
+    if: failure() && needs.build-binary-and-run-system-tests.result == 'failure'
+    runs-on: ubuntu-latest
+    name: System tests failed
+    steps:
+      - run: echo "System tests failed"
+
+  build-docker-image-and-push-to-docker-hub:
+    needs: build-binary-and-run-system-tests
+    name: Build Docker image and push to Dockerhub
+    uses: ./.github/workflows/build-and-push-docker-image.yaml
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+  cleanup-job:
+    runs-on: ubuntu-latest
+    name: Cleanup
+    needs: build-docker-image-and-push-to-docker-hub
+    steps:
+      - run: echo ""
+
+
