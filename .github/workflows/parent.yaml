@@ -27,7 +27,8 @@ jobs:
         #/These key value pairs can be anything we want#
     
     steps:
-      - run: echo "${{ matrix }}"
+      - name: Setup Python version ${{python-version}}
+        uses: actions/setup-python@v${{ python-version }}
       
     
   cleanup-job:
