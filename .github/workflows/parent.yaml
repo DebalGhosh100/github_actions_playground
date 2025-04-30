@@ -27,7 +27,7 @@ jobs:
         #/These key value pairs can be anything we want#
     
     steps:
-      - name: Setup Python version ${{ matrixpython-version }}
+      - name: Setup Python version ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
