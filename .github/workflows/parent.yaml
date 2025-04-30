@@ -60,11 +60,12 @@ jobs:
 
 
       - name: Step 1
-        run: echo "${{ needs }}"
+        run: echo "${{ toJSON(needs) }}"
 
       # Step 2
       - name: Step 2
         run: echo "Running Step 2"
+
 
 
 
