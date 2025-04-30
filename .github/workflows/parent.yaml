@@ -54,7 +54,7 @@ jobs:
   job-three-exp-han:
     runs-on: ubuntu-latest
     name: "Job 3 exception"
-    needs: job-two
+    needs: job-three
     if: failure()
     steps:
 
