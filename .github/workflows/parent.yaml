@@ -9,32 +9,37 @@ on:
 jobs:
   initial-setup-job:
     runs-on: ubuntu-latest
-    name: Initial setup Job
+    name: Initial setup job
     steps:
-      - run: echo "Initial setup Job"
+      - run: echo "Initial setup job"
 
 
-  matrix-job:
+  use-python-setup:
     runs-on: ubuntu-latest
-    name: Matrix Job
-    needs: initial-setup-job
+    name: Second Job
+    needs: first-job
 
     strategy:
       matrix:
         #These key value pairs can be anything we want#
-        dummy-key: [dummy-value1, dummy-value2]
+        python-version: [3.13, 3.11]
+        operating-systema: [ubuntu-latest, windows-latest]
         #/These key value pairs can be anything we want#
-
-
+    
     steps:
-      - run: echo "${{ toJSON(matrix) }}"
+      - run: echo "{{ ${ matrix } }}"
+      
+    
 
 
-  conclude-job:
+
+
+
+  cleanup-job:
     runs-on: ubuntu-latest
-    name: Conclude job
-    needs: matrix-job
+    name: Third Job
+    needs: second-job
     steps:
-      - run: echo "Conclude job"
+      - run: echo "Third job"
 
 
