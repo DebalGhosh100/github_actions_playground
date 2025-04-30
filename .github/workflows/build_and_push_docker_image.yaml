@@ -1,6 +1,7 @@
 # .github/workflows/build-and-push-docker-image.yaml
 name: Build and push Docker image
 
+
 on:
   workflow_call:
     secrets:
