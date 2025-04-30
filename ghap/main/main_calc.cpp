@@ -18,8 +18,8 @@ int main(int argc, char *argv[]) {
   int num1 = std::atoi(argv[2]);
   int num2 = std::atoi(argv[3]);
 
-  // if (operation == "divide" && num2 == 0)
-  //   return 1;
+  if (operation == "divide" && num2 == 0)
+    return 1;
 
   float result = Calculator::evaluate(operation, num1, num2);
 
