@@ -7,12 +7,8 @@ on:
 jobs:
 
   clone-and-run-unit-tests:
-    runs-on: ubuntu-latest
-    name: Clone and run Unit-Tests
-    steps:
-      - run: echo "Clone and run unit tests"
-      - run: exit 1
-
+    name: Clone and run Unit Tests
+    uses: ./.github/workflows/clone-and-run-unit-tests.yaml
 
   unit-tests-failed:
     needs: clone-and-run-unit-tests
@@ -25,10 +21,9 @@ jobs:
 
   build-binary-and-run-system-tests:
     needs: clone-and-run-unit-tests
-    runs-on: ubuntu-latest
     name: Build binary and run System Tests
-    steps:
-      - run: echo "Building and running system tests"
+    uses: ./.github/workflows/clone-and-run-system-tests.yaml
+    
 
   system-tests-failed:
     needs: build-binary-and-run-system-tests
@@ -41,10 +36,11 @@ jobs:
 
   build-docker-image-and-push-to-docker-hub:
     needs: build-binary-and-run-system-tests
-    runs-on: ubuntu-latest
     name: Build Docker image and push to Dockerhub
-    steps:
-      - run: echo "Building Docker image and push to Dockerhub"
+    uses: ./.github/workflows/build-and-push-docker-image.yaml
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
 
   cleanup-job:
