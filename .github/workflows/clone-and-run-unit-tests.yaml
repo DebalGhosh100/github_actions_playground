@@ -2,6 +2,7 @@ name: Pipeline job
 
 on:
   workflow_call:
+
   workflow_dispatch:
     
 
@@ -21,4 +22,5 @@ jobs:
           cd ghap/test
           cmake . && make
           ./unit-tests
+
 
