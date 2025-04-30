@@ -7,22 +7,23 @@ on:
 
 
 jobs:
-  initial-setup-job:
+  first-job:
     runs-on: ubuntu-latest
-    name: Initial setup Job
+    name: Initial setup job
     steps:
-      - run: echo "Initial setup Job"
+      - run: echo "Initial setup job"
 
 
-  matrix-job:
+  second-job:
     runs-on: ubuntu-latest
-    name: Matrix Job
-    needs: initial-setup-job
+    name: Second Job
+    needs: first-job
 
     strategy:
       matrix:
         #These key value pairs can be anything we want#
         dummy-key: [dummy-value1, dummy-value2]
+        sample-key: [sample-value1, sample-value2]
         #/These key value pairs can be anything we want#
 
 
@@ -30,11 +31,11 @@ jobs:
       - run: echo "${{ toJSON(matrix) }}"
 
 
-  conclude-job:
+  third-job:
     runs-on: ubuntu-latest
-    name: Conclude job
-    needs: matrix-job
+    name: Third Job
+    needs: second-job
     steps:
-      - run: echo "Conclude job"
+      - run: echo "Third job"
 
 
