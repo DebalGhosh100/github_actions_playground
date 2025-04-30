@@ -34,6 +34,7 @@ jobs:
       - run: echo "System tests failed"
 
 
+
   build-docker-image-and-push-to-docker-hub:
     needs: build-binary-and-run-system-tests
     name: Build Docker image and push to Dockerhub
