@@ -1,4 +1,4 @@
-name: Testing Cascading Steps
+name: Build and push Docker image
 
 on:
   workflow_call:
