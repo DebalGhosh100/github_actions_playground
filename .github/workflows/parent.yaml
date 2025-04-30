@@ -59,7 +59,7 @@ jobs:
 
 
       - name: Step 1
-        run: echo "Job 3 failed"
+        run: echo "${{ toJSON(needs) }}"
 
       # Step 2
       - name: Step 2
