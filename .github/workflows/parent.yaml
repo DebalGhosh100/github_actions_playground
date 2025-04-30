@@ -1,0 +1,158 @@
+name: Testing Cascading Steps
+on: push
+
+jobs:
+  # JOB 1
+  job-one:
+    runs-on: ubuntu-latest
+    name: "Job 1"
+    steps:
+
+
+      # Step 1
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+  # JOB 2
+  job-two:
+    runs-on: ubuntu-latest
+    name: "Job 2"
+    needs: job-one
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 3
+  job-three:
+    runs-on: ubuntu-latest
+    name: "Job 3"
+    needs: job-two
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+  # JOB 4
+  job-four:
+    runs-on: ubuntu-latest
+    name: "Job 4"
+    needs: job-three
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 5
+  job-five:
+    runs-on: ubuntu-latest
+    name: "Job 5"
+    needs: job-four
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 6
+  job-six:
+    runs-on: ubuntu-latest
+    name: "Job 6"
+    needs: job-five
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 7
+  job-seven:
+    runs-on: ubuntu-latest
+    name: "Job 7"
+    needs: job-three
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+  # JOB 8
+  job-eight:
+    runs-on: ubuntu-latest
+    name: "Job 8"
+    needs: job-seven
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+  # JOB 9
+  job-nine:
+    runs-on: ubuntu-latest
+    name: "Job 9"
+    needs: job-three
+    steps:
+
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+  # JOB 9
+  job-ten:
+    runs-on: ubuntu-latest
+    name: "Job 10"
+    needs: job-nine
+    steps:
+
+      - name: Step 1
+        run: echo "Running Step 1"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
