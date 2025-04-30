@@ -38,7 +38,6 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 3"
     needs: job-two
-    continue-on-error: true
     steps:
 
 
@@ -48,6 +47,26 @@ jobs:
       # Step 2
       - name: Step 2
         run: echo "Running Step 2"
+
+
+  # JOB 3
+  job-three-exp:
+    runs-on: ubuntu-latest
+    name: "Job 3 exp"
+    needs: job-three
+    if: failure()
+    steps:
+
+
+      - name: Step 1
+        run: echo "Job 3 failed"
+
+      # Step 2
+      - name: Step 2
+        run: echo "Running Step 2"
+
+
+
 
 
   # JOB 4
