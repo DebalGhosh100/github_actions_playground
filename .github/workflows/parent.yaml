@@ -45,8 +45,7 @@ jobs:
         run: echo "Running Step 1"
 
       # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
+      - run: exit 1
 
 
   # JOB 4
