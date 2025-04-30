@@ -1,10 +1,9 @@
 name: Pipeline job
 
 on:
-  push:
-    branches:
-      - main
-      - feature/**
+  workflow_call:
+  workflow_dispatch:
+    
 
 jobs:
   clone-and-run-unit-tests:
