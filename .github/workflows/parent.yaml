@@ -1,178 +1,88 @@
-name: Testing Cascading Steps
-on: push
+name: Matrix Strategy testing
+
+on:
+  push:
+    branches:
+      - main
+
 
 jobs:
-  # JOB 1
-  job-one:
+  initial-setup-job:
     runs-on: ubuntu-latest
-    name: "Job 1"
+    name: Initial setup job
     steps:
+      - run: echo "Initial setup job"
 
 
-      # Step 1
-      - name: Step 1
-        run: echo "Running Step 1"
+      
+  pythonV3-13-setup-windows:
+    name: Python v3.13 setup in windows
+    runs-on: windows-latest
+    needs: initial-setup-job
 
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
+    steps:
+      - name: Setup Python version v3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - run: python --version
+     
+
+  pythonV3-11-setup-windows:
+    name: Python v3.11 setup in windows
+    runs-on: windows-latest
+    needs: initial-setup-job
 
 
-  # JOB 2
-  job-two:
+    steps:
+      - name: Setup Python version v3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: python --version
+
+  pythonV3-13-setup-ubuntu:
+    name: Python v3.13 setup in Ubuntu
     runs-on: ubuntu-latest
-    name: "Job 2"
-    needs: job-one
+    needs: initial-setup-job
+
     steps:
+      - name: Setup Python version v3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+      - run: python --version
 
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 3
-  job-three:
+ 
+  pythonV3-11-setup-ubuntu:
+    name: Python v3.11 setup in Ubuntu
     runs-on: ubuntu-latest
-    name: "Job 3"
-    needs: job-two
+    needs: initial-setup-job
+
     steps:
+      - name: Setup Python version v3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: python --version
 
 
-      - name: Step 1
-        run: exit 1
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
 
 
-  # JOB 3
-  job-three-exp:
+
+    
+  cleanup-job:
     runs-on: ubuntu-latest
-    name: "Job 3 exp"
-    needs: job-three
-    if: failure()
+    name: Cleanup job
+    needs:
+      - pythonV3-13-setup-windows
+      - pythonV3-11-setup-windows
+      - pythonV3-13-setup-ubuntu
+      - pythonV3-11-setup-ubuntu
+
     steps:
+      - run: echo "Cleanup job"
 
-
-      - name: Step 1
-        run: echo "${{ toJSON(needs) }}"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-
-
-
-  # JOB 4
-  job-four:
-    runs-on: ubuntu-latest
-    name: "Job 4"
-    needs: job-three
-    steps:
-
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 5
-  job-five:
-    runs-on: ubuntu-latest
-    name: "Job 5"
-    needs: job-four
-    steps:
-
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 6
-  job-six:
-    runs-on: ubuntu-latest
-    name: "Job 6"
-    needs: job-five
-    steps:
-
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 7
-  job-seven:
-    runs-on: ubuntu-latest
-    name: "Job 7"
-    needs: job-three
-    steps:
-
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-  # JOB 8
-  job-eight:
-    runs-on: ubuntu-latest
-    name: "Job 8"
-    needs: job-seven
-    steps:
-
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-
-  # JOB 9
-  job-nine:
-    runs-on: ubuntu-latest
-    name: "Job 9"
-    needs: job-three
-    steps:
-
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
-
-  # JOB 9
-  job-ten:
-    runs-on: ubuntu-latest
-    name: "Job 10"
-    needs: job-nine
-    steps:
-
-      - name: Step 1
-        run: echo "Running Step 1"
-
-      # Step 2
-      - name: Step 2
-        run: echo "Running Step 2"
 
 
