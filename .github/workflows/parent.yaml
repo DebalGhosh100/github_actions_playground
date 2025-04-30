@@ -7,35 +7,40 @@ on:
 
 
 jobs:
-  first-job:
+  initial-setup-job:
     runs-on: ubuntu-latest
     name: Initial setup job
     steps:
       - run: echo "Initial setup job"
 
 
-  second-job:
-    runs-on: ubuntu-latest
-    name: Second Job
-    needs: first-job
+  use-python-setup:
+    name: Use Python setup
+    needs: initial-setup-job
 
     strategy:
       matrix:
         #These key value pairs can be anything we want#
-        dummy-key: [dummy-value1, dummy-value2]
-        sample-key: [sample-value1, sample-value2]
+        python-version: [3.13, 3.11]
+        operating-system: [ubuntu-latest, windows-latest]
         #/These key value pairs can be anything we want#
 
-
+    runs-on: ${{ matrix.operating-system }}
+    
     steps:
-      - run: echo "${{ toJSON(matrix) }}"
+      - name: Setup Python version ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
 
-
-  third-job:
+      
+    
+  cleanup-job:
     runs-on: ubuntu-latest
-    name: Third Job
-    needs: second-job
+    name: Cleanup job
+    needs: use-python-setup
     steps:
-      - run: echo "Third job"
+      - run: echo "Cleanup job"
+
 
 
