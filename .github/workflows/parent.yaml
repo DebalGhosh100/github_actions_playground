@@ -17,8 +17,10 @@ jobs:
         run: echo "Step 3"
 
   call-child-1:
+    needs: job-in-parent
     uses: ./.github/workflows/child1.yaml
 
   call-child-2:
+    needs: call-child-1
     uses: ./.github/workflows/child2.yaml
 
