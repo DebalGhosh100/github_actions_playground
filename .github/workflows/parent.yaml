@@ -15,7 +15,6 @@ jobs:
 
 
   use-python-setup:
-    runs-on: ubuntu-latest
     name: Use Python setup
     needs: initial-setup-job
 
@@ -23,8 +22,10 @@ jobs:
       matrix:
         #These key value pairs can be anything we want#
         python-version: [3.13, 3.11]
-        operating-systema: [ubuntu-latest, windows-latest]
+        operating-system: [ubuntu-latest, windows-latest]
         #/These key value pairs can be anything we want#
+
+    runs-on: ${{ matrix.operating-system }}
     
     steps:
       - name: Setup Python version ${{ matrix.python-version }}
