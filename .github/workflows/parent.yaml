@@ -18,6 +18,7 @@ jobs:
 
   call-child-1:
     uses: ./.github/workflows/child1.yaml
+    needs: job-in-parent
     with:
       image-name: "my-app"
     secrets:
@@ -26,6 +27,7 @@ jobs:
 
   call-child-2:
     uses: ./.github/workflows/child2.yaml
+    needs: call-child-1
     with:
       image-name: "my-app"
     secrets:
