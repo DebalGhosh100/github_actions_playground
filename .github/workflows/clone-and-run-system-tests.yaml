@@ -26,3 +26,4 @@ jobs:
           cmake . && make
           ./system-tests
           ls -al
+

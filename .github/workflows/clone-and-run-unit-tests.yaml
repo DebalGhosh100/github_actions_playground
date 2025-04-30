@@ -21,3 +21,4 @@ jobs:
           cd ghap/test
           cmake . && make
           ./unit-tests
+
