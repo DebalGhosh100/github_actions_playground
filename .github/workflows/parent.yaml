@@ -27,7 +27,7 @@ jobs:
         #/These key value pairs can be anything we want#
     
     steps:
-      - run: echo "{{ ${ matrix } }}"
+      - run: echo "${{ matrix }}"
       
     
   cleanup-job:
