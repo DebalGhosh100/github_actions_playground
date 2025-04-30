@@ -1,4 +1,4 @@
-name: Pipeline job
+name: Run unit tests
 
 on:
   workflow_call:
