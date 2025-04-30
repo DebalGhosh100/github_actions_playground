@@ -1,46 +1,27 @@
-name: Matrix Strategy testing
+name: Parent Workflow
 
 on:
   push:
     branches:
       - main
 
-
 jobs:
-  initial-setup-job:
+  job-in-parent:
     runs-on: ubuntu-latest
-    name: Initial setup job
     steps:
-      - run: echo "Initial setup job"
+      - name: Step 1 in Parent
+        run: echo "Step 1"
+      - name: Step 2 in Parent
+        run: echo "Step 2"
+      - name: Step 3 in Parent
+        run: echo "Step 3"
 
+  call-child-1:
+    needs: job-in-parent
+    uses: ./.github/workflows/child1.yaml
 
-  use-python-setup:
-    name: Use Python setup
-    needs: initial-setup-job
-
-    strategy:
-      matrix:
-        #These key value pairs can be anything we want#
-        python-version: [3.13, 3.11]
-        operating-system: [ubuntu-latest, windows-latest]
-        #/These key value pairs can be anything we want#
-
-    runs-on: ${{ matrix.operating-system }}
-    
-    steps:
-      - name: Setup Python version ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      
-    
-  cleanup-job:
-    runs-on: ubuntu-latest
-    name: Cleanup job
-    needs: use-python-setup
-    steps:
-      - run: echo "Cleanup job"
-
+  call-child-2:
+    needs: call-child-1
+    uses: ./.github/workflows/child2.yaml
 
 
