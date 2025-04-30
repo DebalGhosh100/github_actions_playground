@@ -37,7 +37,7 @@ jobs:
     
   cleanup-job:
     runs-on: ubuntu-latest
-    name: Third Job
+    name: Cleanup job
     needs: use-python-setup
     steps:
       - run: echo "Third job"
