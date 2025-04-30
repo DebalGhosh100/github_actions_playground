@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Job 3"
     needs: job-two
+    continue-on-error: true
     steps:
 
 
