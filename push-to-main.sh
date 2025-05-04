@@ -6,6 +6,8 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
+
+ls -al
 # Store the argument as commit message
 commit_message="$1"
 
