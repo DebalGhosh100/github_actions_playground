@@ -7,6 +7,7 @@ if [ $# -eq 0 ]; then
 fi
 
 
+
 ls -al
 # Store the argument as commit message
 commit_message="$1"
